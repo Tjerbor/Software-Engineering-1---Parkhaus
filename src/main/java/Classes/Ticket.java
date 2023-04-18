@@ -57,6 +57,10 @@ public class Ticket implements TicketIF {
         return erstellDatum;
     }
 
+    public void setErstellDatum(LocalDateTime erstellDatum) {
+        this.erstellDatum = erstellDatum;
+    }
+
     @Override
     public LocalDateTime getBezahlDatum() {
         return bezahlDatum;
