@@ -1,57 +1,62 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Ticket {
-   private boolean status ;
-   private LocalDateTime eingangsdatum ;
-   private LocalDateTime bezahldatum ;
 
-   protected static final int MAX_ANZAHL_TICKET = 100;
+    private boolean bezahlt = false;
+    private boolean ersatzTicket = false;
+    private LocalDateTime erstellDatum;
+    private LocalDateTime bezahlDatum;
 
-   private static int anzahlTicket;
-
-    private int count = 0;
-
-//    Ticket[] array = new Ticket[MAX_ANZAHL_TICKET]
-
-    public Ticket (){
-       this.eingangsdatum = LocalDateTime.now();
-       // Setzt die Eingangszeit auf die aktuelle Datum und Uhrzeit;
-       this.status = false ;
-       setAnzahlTicket(count++);
-   }
-
-    public boolean isStatus() {
-        return status;
+    public Ticket() {
+        this.erstellDatum = LocalDateTime.now();
+        Autozaehler.erhoeheAnzahl();
     }
 
-    public LocalDateTime getEingangsdatum() {
-        return eingangsdatum;
+    public Ticket(boolean ersatzTicket) {
+        if (ersatzTicket) {
+            erstellDatum = LocalDateTime.now().minusHours(24); //Garantiert Tagespreis fürs Ticket
+            ersatzTicket = true;
+        } else {
+            this.erstellDatum = LocalDateTime.now();
+            Autozaehler.erhoeheAnzahl();
+        }
     }
 
-    public LocalDateTime getBezahldatum() {
-        return bezahldatum;
+    /**
+     * Berechnet die Parkdauer eines Tickets in Stunden.
+     *
+     * @return Parkdauer in Stunden
+     */
+    public double berechneParkdauer() {
+        LocalDateTime delta = LocalDateTime.now();
+        double stunden = (double) Duration.between(this.erstellDatum, delta).getSeconds();
+        stunden /= 3600; //60*60 = 3600
+        return stunden;
     }
 
-
-    public static int getAnzahlTicket(){
-       return anzahlTicket;
-
+    public boolean isBezahlt() {
+        return bezahlt;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public boolean isErsatzTicket() {
+        return ersatzTicket;
     }
 
-    public void setBezahldatum(LocalDateTime bezahldatum) {
-        this.bezahldatum = bezahldatum;
+    public LocalDateTime getErstellDatum() {
+        return erstellDatum;
     }
 
-    public void setEingangsdatum(LocalDateTime eingangsdatum) {
-        this.eingangsdatum = eingangsdatum;
+    public LocalDateTime getBezahlDatum() {
+        return bezahlDatum;
     }
 
-    public void setAnzahlTicket(int ticket){
-       anzahlTicket = ticket;
+    public void setBezahlt(boolean bezahlt) {
+        this.bezahlt = bezahlt;
+        if (bezahlt) {
+            this.bezahlDatum = LocalDateTime.now();
+        } else {
+            this.bezahlDatum = null;
+        }
     }
-
 }

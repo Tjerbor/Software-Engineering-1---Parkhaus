@@ -1,19 +1,27 @@
 import java.time.LocalDateTime;
 
 public class Autozaehler {
+    private static int Autoanzahl = 0;
 
-    public void bezahlen (Ticket ticket, double uberwiesenesumme){
-        //zu Bezahlender Betrag kalkulieren
-        Preis preis = new Preis();
-        double ticketpreis = preis.getPreis (ticket.getEingangsdatum(), LocalDateTime.now ());
-        // Überprüfe, ob die überwiesene Summe dem Sollbetrag gleicht(vergleich mit Toleranzbereich von 0.0001)
-        if(uberwiesenesumme -ticketpreis > -0.0001  ){
-        ticket.setBezahldatum(LocalDateTime.now ());
-        ticket.setStatus(true);}
-        else {
-        System.out.println("Die überwiesene Summe ist geringer als der Sollbetrag.");
+    public static int getAutoanzahl() {
+        return Autoanzahl;
+    }
+
+    public static void veraendereAnzahl(int delta) throws IllegalArgumentException {
+        if (Autoanzahl + delta < 0) {
+            throw new IllegalArgumentException("Die Autoanzahl kann nicht geringer als 0 sein.");
         }
-     }
+        Autoanzahl += delta;
+    }
 
+    public static void erhoeheAnzahl() {
+        Autoanzahl++;
+    }
 
+    public static void verringereAnzahl() throws IllegalStateException {
+        if (Autoanzahl == 0) {
+            throw new IllegalStateException("Anzahl beträgt bereits 0 und kann nicht weiter verringert werden.");
+        }
+        Autoanzahl--;
+    }
 }
