@@ -1,7 +1,11 @@
+package Classes;
+
+import Interfaces.TicketIF;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class Ticket {
+public class Ticket implements TicketIF {
 
     private boolean bezahlt = false;
     private boolean ersatzTicket = false;
@@ -28,6 +32,7 @@ public class Ticket {
      *
      * @return Parkdauer in Stunden
      */
+    @Override
     public double berechneParkdauer() {
         LocalDateTime delta = LocalDateTime.now();
         double stunden = (double) Duration.between(this.erstellDatum, delta).getSeconds();
@@ -35,22 +40,27 @@ public class Ticket {
         return stunden;
     }
 
+    @Override
     public boolean isBezahlt() {
         return bezahlt;
     }
 
+    @Override
     public boolean isErsatzTicket() {
         return ersatzTicket;
     }
 
+    @Override
     public LocalDateTime getErstellDatum() {
         return erstellDatum;
     }
 
+    @Override
     public LocalDateTime getBezahlDatum() {
         return bezahlDatum;
     }
 
+    @Override
     public void setBezahlt(boolean bezahlt) {
         this.bezahlt = bezahlt;
         if (bezahlt) {

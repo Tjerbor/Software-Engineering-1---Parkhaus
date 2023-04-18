@@ -1,7 +1,11 @@
+package Classes;
+
+import Interfaces.TicketDatenbankIF;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketDatenbank {
+public class TicketDatenbank implements TicketDatenbankIF {
 
     private List<Ticket> ticketDatenbank;
 
@@ -13,10 +17,12 @@ public class TicketDatenbank {
         this(new ArrayList<Ticket>());
     }
 
+    @Override
     public void addticket(Ticket ticket) {
         ticketDatenbank.add(ticket);
     }
 
+    @Override
     public void addErsatzTicket() {
         ticketDatenbank.add(new Ticket(true));
     }
@@ -24,6 +30,7 @@ public class TicketDatenbank {
     /**
      * Löscht Tickets die älter als 6 Monate sind.
      */
+    @Override
     public void bereinigeDatenbank() {
         int index = 0;
         while (index < ticketDatenbank.size()) {
