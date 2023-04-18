@@ -5,10 +5,19 @@ public class Ticket {
    private LocalDateTime eingangsdatum ;
    private LocalDateTime bezahldatum ;
 
-   public Ticket (){
+   protected static final int MAX_ANZAHL_TICKET = 100;
+
+   private static int anzahlTicket;
+
+    private int count = 0;
+
+//    Ticket[] array = new Ticket[MAX_ANZAHL_TICKET]
+
+    public Ticket (){
        this.eingangsdatum = LocalDateTime.now();
        // Setzt die Eingangszeit auf die aktuelle Datum und Uhrzeit;
        this.status = false ;
+       setAnzahlTicket(count++);
    }
 
     public boolean isStatus() {
@@ -23,6 +32,12 @@ public class Ticket {
         return bezahldatum;
     }
 
+
+    public static int getAnzahlTicket(){
+       return anzahlTicket;
+
+    }
+
     public void setStatus(boolean status) {
         this.status = status;
     }
@@ -34,4 +49,9 @@ public class Ticket {
     public void setEingangsdatum(LocalDateTime eingangsdatum) {
         this.eingangsdatum = eingangsdatum;
     }
+
+    public void setAnzahlTicket(int ticket){
+       anzahlTicket = ticket;
+    }
+
 }
