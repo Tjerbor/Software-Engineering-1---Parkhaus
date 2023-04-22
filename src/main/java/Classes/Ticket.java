@@ -4,22 +4,25 @@ import Interfaces.TicketIF;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Ticket implements TicketIF {
+
+    private final String ID;
     private boolean bezahlt = false;
     private boolean ersatzTicket = false;
     private LocalDateTime erstellDatum;
     private LocalDateTime bezahlDatum;
 
     public Ticket() {
-        this.erstellDatum = LocalDateTime.now();
-        Autozaehler.erhoeheAnzahl();
+        this(false);
     }
 
     public Ticket(boolean ersatzTicket) {
+        this.ID = UUID.randomUUID().toString();
         if (ersatzTicket) {
-            erstellDatum = LocalDateTime.now().minusHours(24); //Garantiert Tagespreis fürs Ticket
-            ersatzTicket = true;
+            this.erstellDatum = LocalDateTime.now().minusHours(24); //Garantiert Tagespreis fürs Ticket
+            this.ersatzTicket = true;
         } else {
             this.erstellDatum = LocalDateTime.now();
             Autozaehler.erhoeheAnzahl();
@@ -61,6 +64,10 @@ public class Ticket implements TicketIF {
     @Override
     public LocalDateTime getBezahlDatum() {
         return bezahlDatum;
+    }
+
+    public String getID() {
+        return ID;
     }
 
     @Override

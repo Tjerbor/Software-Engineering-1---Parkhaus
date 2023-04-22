@@ -4,6 +4,7 @@ import Interfaces.TicketDatenbankIF;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class TicketDatenbank implements TicketDatenbankIF {
 
@@ -25,6 +26,44 @@ public class TicketDatenbank implements TicketDatenbankIF {
     @Override
     public void addErsatzTicket() {
         ticketDatenbank.add(new Ticket(true));
+    }
+
+    public Ticket getTicket(String ticketID) throws NoSuchElementException {
+        for (Ticket t : ticketDatenbank) {
+            if (t.getID().equals(ticketID)) {
+                return t;
+            }
+        }
+        throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
+    }
+
+    public boolean containsTicket(String ticketID) {
+        for (Ticket t : ticketDatenbank) {
+            if (t.getID().equals(ticketID)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Ticket removeTicket(String ticketID) throws NoSuchElementException {
+        Ticket removed = null;
+        for (int i = 0; i < ticketDatenbank.size(); i++) {
+            Ticket current = ticketDatenbank.get(i);
+            if (current.getID().equals(ticketID)) {
+                removed = ticketDatenbank.remove(i);
+                Autozaehler.verringereAnzahl();
+                break;
+            }
+        }
+        if (removed == null) {
+            throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
+        }
+        return removed;
+    }
+
+    public int getTicketanzahl(){
+        return ticketDatenbank.size();
     }
 
     /**
