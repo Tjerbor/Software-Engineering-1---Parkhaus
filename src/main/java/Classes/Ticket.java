@@ -6,8 +6,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Ticket implements TicketIF {
-
-    private static int autoAnzahl;
     private boolean bezahlt = false;
     private boolean ersatzTicket = false;
     private LocalDateTime erstellDatum;
@@ -16,7 +14,6 @@ public class Ticket implements TicketIF {
     public Ticket() {
         this.erstellDatum = LocalDateTime.now();
         Autozaehler.erhoeheAnzahl();
-        autoAnzahl++;
     }
 
     public Ticket(boolean ersatzTicket) {
@@ -74,10 +71,6 @@ public class Ticket implements TicketIF {
         } else {
             this.bezahlDatum = null;
         }
-    }
-
-    public static int getAutoAnzahl() {
-        return autoAnzahl;
     }
 
 }
