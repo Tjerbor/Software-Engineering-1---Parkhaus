@@ -80,4 +80,14 @@ public class Ticket implements TicketIF {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "ID='" + ID + '\'' +
+                ", bezahlt=" + bezahlt +
+                ", ersatzTicket=" + ersatzTicket +
+                ", erstellDatum=" + erstellDatum +
+                ", bezahlDatum=" + bezahlDatum +
+                '}';
+    }
 }
