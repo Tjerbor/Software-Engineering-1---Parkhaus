@@ -47,22 +47,17 @@ public class TicketDatenbank implements TicketDatenbankIF {
     }
 
     public Ticket removeTicket(String ticketID) throws NoSuchElementException {
-        Ticket removed = null;
         for (int i = 0; i < ticketDatenbank.size(); i++) {
             Ticket current = ticketDatenbank.get(i);
             if (current.getID().equals(ticketID)) {
-                removed = ticketDatenbank.remove(i);
                 Autozaehler.verringereAnzahl();
-                break;
+                return ticketDatenbank.remove(i);
             }
         }
-        if (removed == null) {
-            throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
-        }
-        return removed;
+        throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
     }
 
-    public int getTicketanzahl(){
+    public int getTicketanzahl() {
         return ticketDatenbank.size();
     }
 
