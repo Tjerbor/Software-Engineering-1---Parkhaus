@@ -1,14 +1,17 @@
 package Classes;
 
-import Interfaces.KassenautomatIF;
+public class Kassenautomat{
 
-public class Kassenautomat implements KassenautomatIF {
 
-    @Override
-    public void bezahle(Ticket ticket, double geld) throws IllegalArgumentException {
+    public static void bezahle(Ticket ticket, double geld) throws IllegalArgumentException {
         double preis = Preis.getPreis(ticket);
-        if (geld < preis) {
-            throw new IllegalArgumentException("Der Betrag wurde nicht vollständig abbezahlt.");
+
+        if (Math.abs(geld - preis) > 0.01) {
+            if (geld < preis) {
+                throw new IllegalArgumentException("Der Betrag wurde nicht vollständig abbezahlt.");
+            } else {
+                throw new IllegalArgumentException("Es wurde zu viel Geld überwiesen");
+            }
         }
         ticket.setBezahlt(true);
     }

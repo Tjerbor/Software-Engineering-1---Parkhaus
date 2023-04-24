@@ -9,5 +9,7 @@
 </h1>
 <br/>
 <a href="Ticketerstel-Servelt">Ticket erstellen</a>
+<br/>
+<a href="kassenautomat">Kassenautomat</a>
 </body>
 </html>
