@@ -1,8 +1,6 @@
 package Servlets;
 
-
-
-import Classes.Preis;
+import Classes.Autozaehler;
 
 import java.io.*;
 
@@ -10,13 +8,13 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-@WebServlet(name = "preisServlet", value = "/preis-servlet")
-public class PreisServlet extends HttpServlet  {
+@WebServlet(name = "platzServlet", value = "/platz-servlet")
+public class PlatzServlet extends HttpServlet  {
     private String message;
     String requestParamString="";
 
     public void init() {
-        message = "Preis";
+        message = "Platz";
 
     }
 
@@ -27,22 +25,16 @@ public class PreisServlet extends HttpServlet  {
         String requestParamString = request.getQueryString();
         ServletContext context = getServletContext();
         if (!(requestParamString ==null)){
-            message = "Preis "+ requestParamString;
+            message = "Autoanzahl im Parkhaus "+ requestParamString;
 
             context.setAttribute( message,message);
         }
 
         //
         PrintWriter out = response.getWriter();
+        out.println("<html>Freier Platz<body>");
         out.println("<h1>" +message+ "</h1>");
-        out.println("<form action=\"Add-servlet\" method=\"post\">\n" +
-                "    <label for=\"preis\">change price:</label>\n" +
-                "    <input type=\"number\" id=\"preis\" name=\"preis\"><br><br>\n" +
-
-                "</form>");
-
-        out.println("<p>The price per hour = " + Preis.getStundenpreis());
-
+        out.println("<p>The current number of cars = " + Autozaehler.getAutoanzahl());
         out.println("</body></html>");
 
 
@@ -50,6 +42,7 @@ public class PreisServlet extends HttpServlet  {
 
     public void destroy() {
     }
+
 
 
 }

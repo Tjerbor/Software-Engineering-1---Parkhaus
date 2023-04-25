@@ -15,5 +15,9 @@
 <a href="ticketersteller-servlet?password=admin7&username=admin">Ticket-Ersteller Admin Test</a>
 <br/>
 <a href="kassenautomat">Kassenautomat</a>
+<br/>
+<a href="platz-servlet">Platz</a>
+<br/>
+<a href="preis-servlet">Preis</a>
 </body>
 </html>
