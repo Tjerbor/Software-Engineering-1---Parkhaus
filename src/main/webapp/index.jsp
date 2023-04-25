@@ -8,7 +8,11 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="Ticketerstel-Servelt">Ticket erstellen</a>
+<a href="ticketerstell-servlet">Ticket erstellen</a>
+<br/>
+<a href="ticketersteller-servlet">Ticket-Ersteller?</a>
+<br/>
+<a href="ticketersteller-servlet?password=admin7&username=admin">Ticket-Ersteller Admin Test</a>
 <br/>
 <a href="kassenautomat">Kassenautomat</a>
 </body>

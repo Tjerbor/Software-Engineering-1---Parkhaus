@@ -2,7 +2,6 @@ package Servlets;
 
 import Classes.*;
 
-import javax.security.auth.kerberos.KerberosTicket;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
 
 @WebServlet(name = "kassenautomatServlet", value = "/kassenautomat")
 public class KassenautomatServlet extends HttpServlet {
@@ -19,20 +17,8 @@ public class KassenautomatServlet extends HttpServlet {
     private String ticketID;
     private double restBetrag;
 
-    private String message;
-
-    /**
-     * 0: Fenster wo man TicketID eingeben kann.
-     * 1: Ticket wurde nicht gefunden.
-     * 2: Ticket wurde gefunden und zu bezahlener Betrag & Parkdauer wird angezeigt + Bezhalfenster.
-     * 3:
-     */
-    private int Case;
-
     public void init() {
-        message = "Hallo lieber Kunde, bitte geben Sie ihr Ticket an.";
         restBetrag = 0;
-        Case = 0;
     }
 
     @Override
@@ -41,16 +27,14 @@ public class KassenautomatServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        switch (Case) {
-            case 0:
-                out.println("<h1>" + message + "</h1>");
-                out.println("<form action=\"kassenautomat\" method=\"post\">\n" +
-                        "    <label for=\"ticketID\">Ticket ID:</label>\n" +
-                        "    <input type=\"text\" id=\"ticketID\" name=\"ticketID\"><br><br>\n" +
-                        "    <input type=\"submit\" value=\"Submit\">\n" +
-                        "</form>");
 
-        }
+        out.println("<h1>Hallo lieber Kunde, bitte geben Sie ihr Ticket an.</h1>");
+        out.println("<form action=\"kassenautomat\" method=\"post\">\n" +
+                "    <label for=\"ticketID\">Ticket ID:</label>\n" +
+                "    <input type=\"text\" id=\"ticketID\" name=\"ticketID\"><br><br>\n" +
+                "    <input type=\"submit\" value=\"Submit\">\n" +
+                "</form>");
+
 
         out.println("</body></html>");
     }
