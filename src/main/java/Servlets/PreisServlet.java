@@ -1,7 +1,6 @@
 package Servlets;
 
 
-
 import Classes.Preis;
 
 import java.io.*;
@@ -11,42 +10,71 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(name = "preisServlet", value = "/preis-servlet")
-public class PreisServlet extends HttpServlet  {
-    private String message;
-    String requestParamString="";
+public class PreisServlet extends HttpServlet {
 
     public void init() {
-        message = "Preis";
 
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        // Hello
-        String requestParamString = request.getQueryString();
-        ServletContext context = getServletContext();
-        if (!(requestParamString ==null)){
-            message = "Preis "+ requestParamString;
-
-            context.setAttribute( message,message);
-        }
-
-        //
         PrintWriter out = response.getWriter();
-        out.println("<h1>" +message+ "</h1>");
-        out.println("<form action=\"Add-servlet\" method=\"post\">\n" +
-                "    <label for=\"preis\">change price:</label>\n" +
-                "    <input type=\"number\" id=\"preis\" name=\"preis\"><br><br>\n" +
-
-                "</form>");
+        out.println("<h1>Preisservlet</h1>");
 
         out.println("<p>The price per hour = " + Preis.getStundenpreis());
+        out.println("<p>The price per day = " + Preis.getTagespreis());
+
+        out.println("<form action=\"preis-servlet\" method=\"post\">\n" +
+                "    <label for=\"stundenPreis\">change Stundenpreis:</label>\n" +
+                "    <input type=\"text\" id=\"stundenpreis\" name=\"stundenpreis\"><br><br>\n" +
+                "    <label for=\"tagespreis\">change Tagespreis:</label>\n" +
+                "    <input type=\"text\" id=\"tagespreis\" name=\"tagespreis\"><br><br>\n" +
+                "    <input type=\"submit\" value=\"Submit\">\n" +
+
+                "</form>");
 
         out.println("</body></html>");
 
 
     }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String tagespreis = request.getParameter("tagespreis");
+        String stundenpreis = request.getParameter("stundenpreis");
+        if (tagespreis != null) {
+            try {
+                Preis.setTagespreis(Double.parseDouble(tagespreis));
+            } catch (Exception e) {
+
+            }
+        }
+        if (stundenpreis != null) {
+            try {
+                Preis.setStundenpreis(Double.parseDouble(stundenpreis));
+            } catch (Exception e) {
+
+            }
+        }
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Preisservlet</h1>");
+
+        out.println("<p>The price per hour = " + Preis.getStundenpreis());
+        out.println("<p>The price per day = " + Preis.getTagespreis());
+        out.println("<form action=\"preis-servlet\" method=\"post\">\n" +
+                "    <label for=\"stundenPreis\">change Stundenpreis:</label>\n" +
+                "    <input type=\"text\" id=\"stundenpreis\" name=\"stundenpreis\"><br><br>\n" +
+                "    <label for=\"tagespreis\">change Tagespreis:</label>\n" +
+                "    <input type=\"text\" id=\"tagespreis\" name=\"tagespreis\"><br><br>\n" +
+                "    <input type=\"submit\" value=\"Submit\">\n" +
+
+                "</form>");
+        out.println("</body></html>");
+
+    }
+
 
     public void destroy() {
     }

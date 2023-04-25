@@ -15,10 +15,9 @@ import java.io.PrintWriter;
 public class KassenautomatServlet extends HttpServlet {
 
     private String ticketID;
-    private double restBetrag;
 
     public void init() {
-        restBetrag = 0;
+
     }
 
     @Override
