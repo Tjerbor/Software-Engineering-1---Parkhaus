@@ -10,9 +10,7 @@
 <br/>
 <a href="ticketerstell-servlet">Ticket erstellen</a>
 <br/>
-<a href="ticketersteller-servlet">Ticket-Ersteller?</a>
-<br/>
-<a href="ticketersteller-servlet?password=admin7&username=admin">Ticket-Ersteller Admin Test</a>
+<a href="ticketerstell-servlet?password=admin7&username=admin">Ticket-Ersteller Admin Test</a>
 <br/>
 <a href="kassenautomat">Kassenautomat</a>
 <br/>
