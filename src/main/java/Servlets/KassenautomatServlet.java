@@ -45,6 +45,8 @@ public class KassenautomatServlet extends HttpServlet {
         String id = request.getParameter("ticketID");
         if (id != null) {
             servCon.setAttribute("tID", id);
+            servCon.setAttribute("geld", null);
+            servCon.setAttribute("bezahlt", null);
         }
         String geld = request.getParameter("geld");
         if (geld != null) {
@@ -92,6 +94,9 @@ public class KassenautomatServlet extends HttpServlet {
             if (ticket.isBezahlt()) {
                 String bezahlDatum = ticket.getBezahlDatum().toString();
                 out.println("<p>Bezahlt am " + bezahlDatum.substring(0, 10) + " um " + bezahlDatum.substring(11, 16) + " Uhr.</p>");
+                servCon.setAttribute("tID", null);
+                servCon.setAttribute("geld", null);
+                servCon.setAttribute("bezahlt", null);
                 out.println("<h4>Das Ticket wurde bezahlt. Bitte verlassen Sie das Parkhaus.</h4>");
             } else {
                 double preis = Preis.getPreis(ticket);
