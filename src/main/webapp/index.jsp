@@ -18,4 +18,7 @@
 <br/>
 <a href="preis-servlet">Preis</a>
 </body>
+<br/>
+<a href="verlassen-servlet">Rausfahren</a>
+</body>
 </html>
