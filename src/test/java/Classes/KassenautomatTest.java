@@ -19,7 +19,7 @@ class KassenautomatTest {
         assertTrue(ticket.isBezahlt());
     }*/
     @Test
-    void isNotBezahleTest() {
+    void isNotBezahleTest() throws Exception {
 
         Ticket ticket = new Ticket();
         ticket.setBezahlt(false);
@@ -27,6 +27,7 @@ class KassenautomatTest {
         ticket.berechneParkdauer();
         Kassenautomat kassenautomat = new Kassenautomat();
         //assertThrows(IllegalArgumentException.class, () -> kassenautomat.bezahle(ticket, 20));
+        throw new Exception();
 
     }
 }
