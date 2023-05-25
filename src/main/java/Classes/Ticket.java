@@ -2,6 +2,8 @@ package Classes;
 
 import Interfaces.TicketIF;
 import Interfaces.Zustand;
+import Ticketzustaende.Zustand_Nachzahlung;
+import Ticketzustaende.Zustand_bezahlt;
 import Ticketzustaende.Zustand_erstellt;
 
 import java.time.Duration;
@@ -75,6 +77,16 @@ public class Ticket implements TicketIF {
 
     public String getZustand() {
         return zustand.getZustand();
+    }
+
+    public void changeZustand(String zustand){
+        if(zustand.equals("erstellt")){
+            this.zustand = new Zustand_erstellt();
+        } else if (zustand.equals("bezahlt")) {
+            this.zustand = new Zustand_bezahlt();
+        } else if (zustand.equals("Nachzahlung")){
+            this.zustand = new Zustand_Nachzahlung();
+        }
     }
 
     @Override
