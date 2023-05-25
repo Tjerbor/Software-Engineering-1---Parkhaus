@@ -1,12 +1,15 @@
 package Classes;
 
 import Interfaces.TicketIF;
+import Interfaces.Zustand;
+import Ticketzustaende.Zustand_erstellt;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Ticket implements TicketIF {
+    private Zustand zustand = new Zustand_erstellt();
 
     private final String ID;
     private boolean bezahlt = false;
@@ -68,6 +71,10 @@ public class Ticket implements TicketIF {
 
     public String getID() {
         return ID;
+    }
+
+    public String getZustand() {
+        return zustand.getZustand();
     }
 
     @Override
