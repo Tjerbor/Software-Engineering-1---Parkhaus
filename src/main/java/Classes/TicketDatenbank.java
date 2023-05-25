@@ -2,11 +2,14 @@ package Classes;
 
 import Interfaces.TicketDatenbankIF;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 public class TicketDatenbank implements TicketDatenbankIF {
+
+    private LocalDateTime time_offset = LocalDateTime.of(0, 0, 0, 0, 0, 0);
 
     private List<Ticket> ticketDatenbank;
 
@@ -77,5 +80,21 @@ public class TicketDatenbank implements TicketDatenbankIF {
         }
     }
 
+    public void addTime_offset(LocalDateTime delta) {
+        this.time_offset = addTime(this.time_offset, delta);
+    }
 
+    public LocalDateTime getParkhausTime(){
+        return addTime(LocalDateTime.now(),time_offset);
+    }
+
+    private LocalDateTime addTime(LocalDateTime original, LocalDateTime delta) {
+        LocalDateTime result = original;
+        result.plusYears(delta.getYear());
+        result.plusDays(delta.getDayOfYear());
+        result.plusHours(delta.getHour());
+        result.plusMinutes(delta.getMinute());
+        result.plusSeconds(delta.getSecond());
+        return result;
+    }
 }

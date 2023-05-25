@@ -21,10 +21,10 @@ public class Ticket implements TicketIF {
     public Ticket(boolean ersatzTicket) {
         this.ID = UUID.randomUUID().toString();
         if (ersatzTicket) {
-            this.erstellDatum = LocalDateTime.now().minusHours(24); //Garantiert Tagespreis fürs Ticket
+            this.erstellDatum = Parkhaus.getTicketDatenbank().getParkhausTime().minusHours(24); //Garantiert Tagespreis fürs Ticket
             this.ersatzTicket = true;
         } else {
-            this.erstellDatum = LocalDateTime.now();
+            this.erstellDatum = Parkhaus.getTicketDatenbank().getParkhausTime();
             Autozaehler.erhoeheAnzahl();
         }
     }
@@ -36,7 +36,7 @@ public class Ticket implements TicketIF {
      */
     @Override
     public double berechneParkdauer() {
-        LocalDateTime delta = LocalDateTime.now();
+        LocalDateTime delta = Parkhaus.getTicketDatenbank().getParkhausTime();
         double stunden = (double) Duration.between(this.erstellDatum, delta).getSeconds();
         stunden /= 3600; //60*60 = 3600
         return stunden;
