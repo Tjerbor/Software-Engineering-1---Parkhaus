@@ -11,6 +11,9 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static Classes.TicketDatenbank.addTime_offset;
+import static Classes.TicketDatenbank.time_offset;
+
 @WebServlet(name = "ZeitServlet", value = "/Zeit-servlet")
 public class ZeitServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -41,21 +44,18 @@ public class ZeitServlet extends HttpServlet {
         String buttonValue = request.getParameter("button"); // Get the clicked button value
 
 
-            LocalDateTime T = TicketDatenbank.time_offset;
+
             // Adjust delta based on the clicked button value
-            if (buttonValue.equals("+5 Minuten")) {
-                T = T.plusMinutes(5);
-            }
-            if (buttonValue.equals("+10 Minuten")) {
-                T = T.plusMinutes(10);
-            }
-            if (buttonValue.equals("+1 Stunde")) {
-                T = T.plusHours(1);
-            }
-        if (buttonValue.equals("Reset") ) {
-            T = LocalDateTime.now();
+        if (buttonValue.equals("+5 Minuten")) {
+            addTime_offset(5);
+        } else if (buttonValue.equals("+10 Minuten")) {
+            addTime_offset(10);        }
+         if (buttonValue.equals("+1 Stunde")) {
+             addTime_offset(60);        }
+          if (buttonValue.equals("Reset")) {
+              time_offset = 0;
         }
-            TicketDatenbank.time_offset = T;
+
 
         // Redirect back to the doGet method to display the updated time
         response.sendRedirect("Zeit-servlet");
