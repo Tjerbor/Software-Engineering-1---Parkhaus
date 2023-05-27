@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class TicketDatenbank implements TicketDatenbankIF {
 
-    private LocalDateTime time_offset = LocalDateTime.of(0, 0, 0, 0, 0, 0);
+    public static LocalDateTime time_offset = LocalDateTime.now() ;
 
     private List<Ticket> ticketDatenbank;
 
@@ -80,21 +80,11 @@ public class TicketDatenbank implements TicketDatenbankIF {
         }
     }
 
-    public void addTime_offset(LocalDateTime delta) {
-        this.time_offset = addTime(this.time_offset, delta);
+
+    public static LocalDateTime getParkhausTime(){
+        return time_offset;
     }
 
-    public LocalDateTime getParkhausTime(){
-        return addTime(LocalDateTime.now(),time_offset);
-    }
 
-    private LocalDateTime addTime(LocalDateTime original, LocalDateTime delta) {
-        LocalDateTime result = original;
-        result.plusYears(delta.getYear());
-        result.plusDays(delta.getDayOfYear());
-        result.plusHours(delta.getHour());
-        result.plusMinutes(delta.getMinute());
-        result.plusSeconds(delta.getSecond());
-        return result;
-    }
+
 }
