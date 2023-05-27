@@ -7,7 +7,7 @@ public class Rausfahren {
 
     public boolean darfraus (Ticket ticket) {
 
-        if (Duration.between(ticket.getBezahlDatum(), LocalDateTime.now()).toMinutes() < 15) {
+        if (Duration.between(ticket.getBezahlDatum(),TicketDatenbank.getParkhausTime()).toMinutes() < 15) {
             return true;
         }
 else {

@@ -16,7 +16,7 @@ public class Ticket implements TicketIF {
     private final String ID;
     private boolean bezahlt = false;
     private boolean ersatzTicket = false;
-    private LocalDateTime erstellDatum;
+    private LocalDateTime erstellDatum = TicketDatenbank.getParkhausTime();
     private LocalDateTime bezahlDatum;
 
     public Ticket() {
