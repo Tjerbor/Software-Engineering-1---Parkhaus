@@ -1,6 +1,7 @@
 package Servlets;
 
 import Classes.*;
+import Exceptions.RaumZeitKontinuumException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -44,17 +45,8 @@ public class KassenautomatServlet extends HttpServlet {
         String id = request.getParameter("ticketID");
         if (id != null) {
             servCon.setAttribute("tID", id);
-            servCon.setAttribute("geld", null);
-            servCon.setAttribute("bezahlt", null);
         }
         String geld = request.getParameter("geld");
-        if (geld != null) {
-            servCon.setAttribute("geld", geld);
-        }
-        String bezahlt = request.getParameter("bezahlt");
-        if (bezahlt != null) {
-            servCon.setAttribute("bezahlt", bezahlt);
-        }
 
 
         TicketDatenbank datenbank = Parkhaus.getTicketDatenbank();
@@ -67,44 +59,34 @@ public class KassenautomatServlet extends HttpServlet {
         ticketID = (String) servCon.getAttribute("tID");
         if (ticketID != null && datenbank.containsTicket(ticketID)) {
             Ticket ticket = datenbank.getTicket(ticketID);
+            String Zustand = ticket.getZustand();
+
             out.println("<h1>Ticket: " + ticketID + "</h1>");
+            out.println("<h2>Zustand: " + Zustand + "</h2>");
             String erstellDatum = ticket.getErstellDatum().toString();
             out.println("<p>Erstellt am " + erstellDatum.substring(0, 10) + " um " + erstellDatum.substring(11, 16) + " Uhr.</p>");
             out.println(String.format("<p>Parkdauer: %.2fh</p>", ticket.berechneParkdauer()));
 
-            geld = (String) servCon.getAttribute("geld");
-            if (geld != null) {
-                Double Geld = Double.parseDouble(geld);
-                if (Geld != 0.0) {
-                    double b = Geld;
-                    String dd = (String) servCon.getAttribute("bezahlt");
-                    if (dd != null) {
-                        b += Double.parseDouble(dd);
-                    }
-                    servCon.setAttribute("bezahlt", Double.toString(b));
-                    try {
-                        Kassenautomat.bezahle(ticket, b);
-                    } catch (IllegalArgumentException e) {
 
-                    }
-                }
-            }
-
-            if (ticket.isBezahlt()) {
+            if (Zustand.equals("bezahlt")) {
                 String bezahlDatum = ticket.getBezahlDatum().toString();
                 out.println("<p>Bezahlt am " + bezahlDatum.substring(0, 10) + " um " + bezahlDatum.substring(11, 16) + " Uhr.</p>");
                 servCon.setAttribute("tID", null);
-                servCon.setAttribute("geld", null);
-                servCon.setAttribute("bezahlt", null);
                 out.println("<h4>Das Ticket wurde bezahlt. Bitte verlassen Sie das Parkhaus.</h4>");
-            } else {
-                double preis = Preis.getPreis(ticket);
-                out.println("<p>Zu zahlender Betrag: " + round2Decimals(preis) + " Euro</p>");
-                bezahlt = (String) servCon.getAttribute("bezahlt");
-                double Bezahlt = 0.0;
-                if (bezahlt != null) {
-                    Bezahlt = Double.parseDouble(bezahlt);
+
+            } else if (Zustand.equals("erstellt") || Zustand.equals("Nachzahlung")) {
+                if (geld != null) {
+                    Double Geld = Double.parseDouble(geld);
+                    if (Geld != 0.0) {
+                        double b = Geld + ticket.getUeberwiesen();
+                        Kassenautomat.bezahle(ticket, b);
+                    }
                 }
+
+                double Bezahlt = ticket.getUeberwiesen();
+                double preis = Preis.getPreis(ticket) - ticket.getUeberwiesen();
+                out.println(String.format("<p>Zu zahlender Betrag: %.2f Euro</p>",round2Decimals(preis)));
+
                 if (Bezahlt != 0.0) {
                     if (Bezahlt < preis) {
                         out.println(String.format("<h4>Sie haben bereits %.2f Euro bezahlt. Es fehlen noch %.2f Euro, um das Ticket zu bezahlen.</h4>", round2Decimals(Bezahlt), round2Decimals(preis - Bezahlt)));

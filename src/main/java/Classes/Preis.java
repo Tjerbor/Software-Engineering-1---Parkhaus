@@ -1,12 +1,14 @@
 package Classes;
 
+import Exceptions.RaumZeitKontinuumException;
+
 import java.time.LocalDateTime;
 
 public class Preis {
     private static double Stundenpreis = 2.3;
     private static double Tagespreis = 27.0;
 
-    public static double getPreis(Ticket ticket) {
+    public static double getPreis(Ticket ticket){
         double parkdauer = ticket.berechneParkdauer(); //in Stunden
         double preis = parkdauer * Stundenpreis;
         return preis > Tagespreis ? Tagespreis : preis;

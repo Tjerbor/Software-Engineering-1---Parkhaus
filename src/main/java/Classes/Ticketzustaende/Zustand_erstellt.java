@@ -1,4 +1,4 @@
-package Ticketzustaende;
+package Classes.Ticketzustaende;
 
 import Interfaces.Zustand;
 

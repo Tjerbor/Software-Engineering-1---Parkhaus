@@ -1,19 +1,19 @@
 package Classes;
 
-public class Kassenautomat{
+public class Kassenautomat {
 
 
-    public static void bezahle(Ticket ticket, double geld) throws IllegalArgumentException {
+    public static void bezahle(Ticket ticket, double geld) {
         double preis = Preis.getPreis(ticket);
+        double diff = geld + ticket.getUeberwiesen();
 
-        if (Math.abs(geld - preis) > 0.01) {
-            if (geld < preis) {
-                throw new IllegalArgumentException("Der Betrag wurde nicht vollständig abbezahlt.");
-            } else {
-                throw new IllegalArgumentException("Es wurde zu viel Geld überwiesen");
-            }
+        ticket.setUeberwiesen(diff);
+
+        if (Math.abs(diff - preis) > 0.01) {
+            ticket.changeZustand("Nachzahlung");
+        } else {
+            ticket.changeZustand("bezahlt");
         }
-        ticket.setBezahlt(true);
     }
 
 }

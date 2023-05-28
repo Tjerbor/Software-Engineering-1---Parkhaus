@@ -1,5 +1,6 @@
 package Classes;
 
+import Exceptions.RaumZeitKontinuumException;
 import Interfaces.TicketDatenbankIF;
 
 import java.time.LocalDateTime;
@@ -69,8 +70,8 @@ public class TicketDatenbank implements TicketDatenbankIF {
     /**
      * Löscht Tickets die älter als 6 Monate sind.
      */
-    @Override
-    public void bereinigeDatenbank() {
+
+    public void bereinigeDatenbank() throws RaumZeitKontinuumException {
         int index = 0;
         while (index < ticketDatenbank.size()) {
             Ticket current = ticketDatenbank.get(index);

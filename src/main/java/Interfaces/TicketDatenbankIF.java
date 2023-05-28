@@ -7,5 +7,4 @@ public interface TicketDatenbankIF {
 
     void addErsatzTicket();
 
-    void bereinigeDatenbank();
 }
