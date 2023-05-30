@@ -1,6 +1,7 @@
 package Servlets;
 
 import Classes.*;
+import Exceptions.RaumZeitKontinuumException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +54,11 @@ public class ZeitServlet extends HttpServlet {
          if (buttonValue.equals("+1 Stunde")) {
              addTime_offset(60);        }
           if (buttonValue.equals("Reset")) {
-              time_offset = 0;
+              if(Parkhaus.getTicketDatenbank().getTicketanzahl() == 0){
+                  time_offset = 0;
+              } else {
+                  response.sendError(HttpServletResponse.SC_BAD_REQUEST,new RaumZeitKontinuumException().getMessage());
+              }
         }
 
 

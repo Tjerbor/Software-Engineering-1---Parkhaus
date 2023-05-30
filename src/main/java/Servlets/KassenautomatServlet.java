@@ -78,8 +78,7 @@ public class KassenautomatServlet extends HttpServlet {
                 if (geld != null) {
                     Double Geld = Double.parseDouble(geld);
                     if (Geld != 0.0) {
-                        double b = Geld + ticket.getUeberwiesen();
-                        Kassenautomat.bezahle(ticket, b);
+                        Kassenautomat.bezahle(ticket, Geld);
                     }
                 }
 
