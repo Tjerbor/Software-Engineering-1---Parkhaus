@@ -5,13 +5,12 @@ import java.time.LocalDateTime;
 
 public class Rausfahren {
 
-    public boolean darfraus (Ticket ticket) {
+    public boolean darfraus(Ticket ticket) {
 
-        if (Duration.between(ticket.getBezahlDatum(),TicketDatenbank.getParkhausTime()).toMinutes() < 15) {
+        if (Duration.between(ticket.getBezahlDatum(), TicketDatenbank.getParkhausTime()).toMinutes() < 15) {
             return true;
-        }
-else {
-    return false;
+        } else {
+            return false;
         }
     }
 }

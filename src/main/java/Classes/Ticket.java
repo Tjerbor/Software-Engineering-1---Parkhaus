@@ -47,7 +47,7 @@ public class Ticket implements TicketIF {
      * @return Parkdauer in Stunden
      */
     @Override
-    public double berechneParkdauer(){
+    public double berechneParkdauer() {
         LocalDateTime delta = Parkhaus.getTicketDatenbank().getParkhausTime();
         double stunden = (double) Duration.between(this.erstellDatum, delta).getSeconds();
         stunden /= 3600; //60*60 = 3600
@@ -90,7 +90,7 @@ public class Ticket implements TicketIF {
         if (zustand.equals("erstellt")) {
             this.zustand = new Zustand_erstellt();
             this.ueberwiesen = 0.0;
-            this.erstellDatum= TicketDatenbank.getParkhausTime();
+            this.erstellDatum = TicketDatenbank.getParkhausTime();
             this.bezahlDatum = null;
         } else if (zustand.equals("bezahlt")) {
             this.zustand = new Zustand_bezahlt();

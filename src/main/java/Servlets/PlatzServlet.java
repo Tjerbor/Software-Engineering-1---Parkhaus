@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
 @WebServlet(name = "platzServlet", value = "/platz-servlet")
-public class PlatzServlet extends HttpServlet  {
+public class PlatzServlet extends HttpServlet {
 
     public void init() {
     }
@@ -26,7 +26,6 @@ public class PlatzServlet extends HttpServlet  {
 
     public void destroy() {
     }
-
 
 
 }

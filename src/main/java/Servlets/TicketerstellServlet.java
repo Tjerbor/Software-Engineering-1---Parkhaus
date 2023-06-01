@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 @WebServlet(name = "ticketerstellServlet", value = "/ticketerstell-servlet")
 public class TicketerstellServlet extends HttpServlet {
     TicketDatenbank ticketdatenbank = Parkhaus.getTicketDatenbank();
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 

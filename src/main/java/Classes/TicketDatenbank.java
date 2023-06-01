@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class TicketDatenbank implements TicketDatenbankIF {
 
@@ -17,7 +18,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
     private List<Ticket> ticketDatenbank;
 
     public TicketDatenbank(List<Ticket> ticketdatenbank) {
-        this.ticketDatenbank = new ArrayList<Ticket>();
+        this.ticketDatenbank = ticketdatenbank;
     }
 
     public TicketDatenbank() {
@@ -35,32 +36,46 @@ public class TicketDatenbank implements TicketDatenbankIF {
     }
 
     public Ticket getTicket(String ticketID) throws NoSuchElementException {
-        for (Ticket t : ticketDatenbank) {
-            if (t.getID().equals(ticketID)) {
-                return t;
-            }
+        Ticket result = ticketDatenbank
+                .stream()
+                .filter(p -> p.getID().equals(ticketID))
+                .findFirst()
+                .orElse(null);
+
+        if (result != null) {
+            return result;
         }
         throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
     }
 
     public boolean containsTicket(String ticketID) {
-        for (Ticket t : ticketDatenbank) {
-            if (t.getID().equals(ticketID)) {
-                return true;
-            }
-        }
-        return false;
+        Ticket result = ticketDatenbank
+                .stream()
+                .filter(p -> p.getID().equals(ticketID))
+                .findFirst()
+                .orElse(null);
+        return result != null;
     }
 
     public Ticket removeTicket(String ticketID) throws NoSuchElementException {
-        for (int i = 0; i < ticketDatenbank.size(); i++) {
-            Ticket current = ticketDatenbank.get(i);
-            if (current.getID().equals(ticketID)) {
-                Autozaehler.verringereAnzahl();
-                return ticketDatenbank.remove(i);
-            }
+        Ticket[] removed = new Ticket[1];
+        ticketDatenbank = ticketDatenbank
+                .stream()
+                .filter(t -> {
+                    if (t.getID().equals(ticketID)) {
+                        Autozaehler.verringereAnzahl();
+                        removed[0] = t;
+                        return false;
+                    } else {
+                        return true;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        if (removed[0] == null) {
+            throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
         }
-        throw new NoSuchElementException(String.format("Ticket with ID: %s does not exist.", ticketID));
+        return removed[0];
     }
 
     public int getTicketanzahl() {
@@ -72,50 +87,45 @@ public class TicketDatenbank implements TicketDatenbankIF {
      */
 
     public void bereinigeDatenbank() throws RaumZeitKontinuumException {
-        int index = 0;
-        while (index < ticketDatenbank.size()) {
-            Ticket current = ticketDatenbank.get(index);
-            if (current.berechneParkdauer() >= 4392) { //6 Monate sind 4392 Stunden
-                ticketDatenbank.remove(index);
-            } else {
-                index++;
-            }
-        }
+        ticketDatenbank = ticketDatenbank
+                .stream()
+                .filter(p -> p.berechneParkdauer() < 4392) //6 Monate sind 4392 Stunden
+                .collect(Collectors.toList());
     }
+
     private static LocalDateTime addTime(LocalDateTime original, int delta) {
         LocalDateTime result = original;
 
 
-       //*** if (delta.getYear() != 0) {
+        //*** if (delta.getYear() != 0) {
         //  result = result.plusYears(delta.getYear());
         //  }
-    //if (delta.getDayOfYear() != 0) {
+        //if (delta.getDayOfYear() != 0) {
         //  result = result.plusDays(delta.getDayOfYear());
         //  }
-    //if (delta.getMonthValue() != 0) {
+        //if (delta.getMonthValue() != 0) {
         //  result = result.plusMonths(delta.getMonthValue());
         //  }
-    //if (delta.getHour() != 0) {
+        //if (delta.getHour() != 0) {
         //  result = result.plusHours(delta.getHour());
         //  }
-    //if (delta.getMinute() != 0) {
+        //if (delta.getMinute() != 0) {
         //  result = result.plusMinutes(delta.getMinute());
         //  }
-    //if (delta.getSecond() != 0) {
+        //if (delta.getSecond() != 0) {
         //  result = result.plusSeconds(delta.getSecond());
         //  }
-    //return result;
+        //return result;
         return result.plusMinutes(delta);
     }
 
     public static void addTime_offset(int delta) {
-        time_offset =time_offset+delta;
+        time_offset = time_offset + delta;
     }
 
-    public static LocalDateTime getParkhausTime(){
-        return addTime(LocalDateTime.now(),time_offset);
+    public static LocalDateTime getParkhausTime() {
+        return addTime(LocalDateTime.now(), time_offset);
     }
-
 
 
 }

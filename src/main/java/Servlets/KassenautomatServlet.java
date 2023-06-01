@@ -84,7 +84,7 @@ public class KassenautomatServlet extends HttpServlet {
 
                 double Bezahlt = ticket.getUeberwiesen();
                 double preis = Preis.getPreis(ticket) - ticket.getUeberwiesen();
-                out.println(String.format("<p>Zu zahlender Betrag: %.2f Euro</p>",round2Decimals(preis)));
+                out.println(String.format("<p>Zu zahlender Betrag: %.2f Euro</p>", round2Decimals(preis)));
 
                 if (Bezahlt != 0.0) {
                     if (Bezahlt < preis) {

@@ -45,20 +45,21 @@ public class ZeitServlet extends HttpServlet {
         String buttonValue = request.getParameter("button"); // Get the clicked button value
 
 
-
-            // Adjust delta based on the clicked button value
+        // Adjust delta based on the clicked button value
         if (buttonValue.equals("+5 Minuten")) {
             addTime_offset(5);
         } else if (buttonValue.equals("+10 Minuten")) {
-            addTime_offset(10);        }
-         if (buttonValue.equals("+1 Stunde")) {
-             addTime_offset(60);        }
-          if (buttonValue.equals("Reset")) {
-              if(Parkhaus.getTicketDatenbank().getTicketanzahl() == 0){
-                  time_offset = 0;
-              } else {
-                  response.sendError(HttpServletResponse.SC_BAD_REQUEST,new RaumZeitKontinuumException().getMessage());
-              }
+            addTime_offset(10);
+        }
+        if (buttonValue.equals("+1 Stunde")) {
+            addTime_offset(60);
+        }
+        if (buttonValue.equals("Reset")) {
+            if (Parkhaus.getTicketDatenbank().getTicketanzahl() == 0) {
+                time_offset = 0;
+            } else {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, new RaumZeitKontinuumException().getMessage());
+            }
         }
 
 

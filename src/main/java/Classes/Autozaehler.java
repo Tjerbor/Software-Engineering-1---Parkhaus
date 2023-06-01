@@ -1,6 +1,6 @@
 package Classes;
 
-public class Autozaehler{
+public class Autozaehler {
     private static int Autoanzahl = 0;
 
     public static int getAutoanzahl() {
