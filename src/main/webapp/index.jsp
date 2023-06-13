@@ -24,4 +24,7 @@
 <br/>
 <a href="Zeit-servlet">Zeit ändern</a>
 </body>
+<br/>
+<a href="statistik">Statistik</a>
+
 </html>

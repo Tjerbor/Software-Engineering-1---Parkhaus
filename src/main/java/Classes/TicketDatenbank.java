@@ -15,7 +15,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
     public static int time_offset = 0;
 
 
-    private List<Ticket> ticketDatenbank;
+    private static List<Ticket> ticketDatenbank;
 
     public TicketDatenbank(List<Ticket> ticketdatenbank) {
         this.ticketDatenbank = ticketdatenbank;
@@ -78,7 +78,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
         return removed[0];
     }
 
-    public int getTicketanzahl() {
+    public static int getTicketanzahl() {
         return ticketDatenbank.size();
     }
 
@@ -127,5 +127,8 @@ public class TicketDatenbank implements TicketDatenbankIF {
         return addTime(LocalDateTime.now(), time_offset);
     }
 
+    public static List<Ticket> getAllTickets() {
+        return new ArrayList<>(ticketDatenbank);
+    }
 
 }
