@@ -32,7 +32,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
 
     @Override
     public void addErsatzTicket() {
-        ticketDatenbank.add(new Ticket(true));
+        ticketDatenbank.add(new Ersatzticket());
     }
 
     public Ticket getTicket(String ticketID) throws NoSuchElementException {
@@ -95,27 +95,6 @@ public class TicketDatenbank implements TicketDatenbankIF {
 
     private static LocalDateTime addTime(LocalDateTime original, int delta) {
         LocalDateTime result = original;
-
-
-        //*** if (delta.getYear() != 0) {
-        //  result = result.plusYears(delta.getYear());
-        //  }
-        //if (delta.getDayOfYear() != 0) {
-        //  result = result.plusDays(delta.getDayOfYear());
-        //  }
-        //if (delta.getMonthValue() != 0) {
-        //  result = result.plusMonths(delta.getMonthValue());
-        //  }
-        //if (delta.getHour() != 0) {
-        //  result = result.plusHours(delta.getHour());
-        //  }
-        //if (delta.getMinute() != 0) {
-        //  result = result.plusMinutes(delta.getMinute());
-        //  }
-        //if (delta.getSecond() != 0) {
-        //  result = result.plusSeconds(delta.getSecond());
-        //  }
-        //return result;
         return result.plusMinutes(delta);
     }
 

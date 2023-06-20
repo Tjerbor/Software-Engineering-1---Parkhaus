@@ -5,9 +5,15 @@ import java.time.LocalDateTime;
 public interface TicketIF {
     double berechneParkdauer();
 
-    boolean isErsatzTicket();
-
     LocalDateTime getErstellDatum();
 
     LocalDateTime getBezahlDatum();
+
+    public String kassenautomatenText();
+
+    public String bezahlen();
+
+    public String rausfahren();
+
+    public String informationen();
 }

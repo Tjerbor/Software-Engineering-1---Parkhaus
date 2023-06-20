@@ -46,22 +46,8 @@ public class VerlassenServlet extends HttpServlet {
         if (ticket != null) {
             response.setContentType("text/html");
 
-            String Zustand = ticket.getZustand();
+            out.println(ticket.rausfahren());
 
-            if (Zustand.equals("bezahlt")) {
-                if (Duration.between(ticket.getBezahlDatum(), Parkhaus.getTicketDatenbank().getParkhausTime()).toMinutes() > 15) {
-                    ticket.changeZustand("Nachzahlung");
-                    out.println("<p>Sie haben ihr Ticket vor länger als 15 Minuten bezahlt und nun wird eine Nachzahlung gefordert.</p>");
-                } else {
-                    Parkhaus.getTicketDatenbank().removeTicket(Id);
-                    out.println("<p>Sie haben das Parkhaus verlassen.</p>");
-                    out.println("<p>Ihr Ticket wurde gelöscht.</p>");
-                }
-            } else if (Zustand.equals("erstellt")) {
-                out.println("<p>Sie haben Ihr Ticket noch nicht bezahlt.</p>");
-            } else if (Zustand.equals("Nachzahlung")) {
-                out.println("<p>Sie haben Ihr Ticket noch nicht völlig bezahlt oder es ist länger 15 Minuten her und nun wird eine nachzahlung gefordert.</p>");
-            }
         } else {
             out.println("<h1>Ticket jibbit nicht.</h1>");
         }

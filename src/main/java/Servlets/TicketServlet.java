@@ -1,5 +1,6 @@
 package Servlets;
 
+import Classes.Ersatzticket;
 import Classes.Parkhaus;
 import Classes.Ticket;
 import Classes.TicketDatenbank;
@@ -18,7 +19,7 @@ public class TicketServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getQueryString() != null && request.getQueryString().equals("ersatz-ticket")) {
-            Ticket ticket = new Ticket(true);
+            Ticket ticket = new Ersatzticket();
             Parkhaus.getTicketDatenbank().addticket(ticket);
             response.setContentType("text/html");
 
@@ -34,11 +35,8 @@ public class TicketServlet extends HttpServlet {
         Ticket ticket = new Ticket();
         Parkhaus.getTicketDatenbank().addticket(ticket);
 
-
         response.setContentType("text/html");
-
-        response.getWriter().write("<h1>Ticket informations</h1>");
-        response.getWriter().write("<p>Ticket ID : " + ticket.getID() + "</p><p>Entry date : " + ticket.getErstellDatum());
+        response.getWriter().write(ticket.informationen());
 
     }
 }

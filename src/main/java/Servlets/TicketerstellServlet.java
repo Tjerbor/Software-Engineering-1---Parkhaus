@@ -65,7 +65,7 @@ public class TicketerstellServlet extends HttpServlet {
         if (ticketdatenbank.getTicketanzahl() < 1000) {
             //Ersatzticket erstellen und in Datenbank einfügen  & Ersatzticket aus Datenbank entnehmen
 
-            Ticket ersatzTicket = ticketdatenbank.getTicket(new Ticket(true).getID());
+            Ticket ersatzTicket = ticketdatenbank.getTicket(new Ersatzticket().getID());
 
             // Antwort zurücksenden
             response.setContentType("text/html");

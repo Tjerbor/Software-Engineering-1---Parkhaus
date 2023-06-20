@@ -15,12 +15,6 @@ import java.io.PrintWriter;
 @WebServlet(name = "kassenautomatServlet", value = "/kassenautomat")
 public class KassenautomatServlet extends HttpServlet {
 
-    private String ticketID;
-
-    public void init() {
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,10 +37,11 @@ public class KassenautomatServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext servCon = getServletContext();
         String id = request.getParameter("ticketID");
+        String action = request.getParameter("bezahlen");
+
         if (id != null) {
-            servCon.setAttribute("tID", id);
+            servCon.setAttribute("ticketID", id);
         }
-        String geld = request.getParameter("geld");
 
 
         TicketDatenbank datenbank = Parkhaus.getTicketDatenbank();
@@ -56,8 +51,24 @@ public class KassenautomatServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
 
-        ticketID = (String) servCon.getAttribute("tID");
+        String ticketID = (String) servCon.getAttribute("ticketID");
+
         if (ticketID != null && datenbank.containsTicket(ticketID)) {
+            Ticket ticket = datenbank.getTicket(ticketID);
+
+            if(action == null){
+                out.println(ticket.kassenautomatenText());
+            } else {
+                servCon.setAttribute("ticketID", null);
+                out.println(ticket.bezahlen());
+            }
+
+        } else {
+            out.println("<h1>Ticket jibbit nicht.</h1>");
+        }
+
+
+        /*if (ticketID != null && datenbank.containsTicket(ticketID)) {
             Ticket ticket = datenbank.getTicket(ticketID);
             String Zustand = ticket.getZustand();
 
@@ -103,14 +114,10 @@ public class KassenautomatServlet extends HttpServlet {
 
         } else {
             out.println("<h1>Ticket jibbit nicht.</h1>");
-        }
+        }*/
 
         out.println("</body></html>");
 
-    }
-
-    private static double round2Decimals(double input) {
-        return ((double) ((int) ((input * 100) + 0.5))) / 100;
     }
 
     public void destroy() {

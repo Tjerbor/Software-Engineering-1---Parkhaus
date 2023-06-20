@@ -8,12 +8,10 @@ public class Kassenautomat {
         double diff = geld + ticket.getUeberwiesen();
 
         ticket.setUeberwiesen(diff);
+    }
 
-        if (Math.abs(diff - preis) > 0.01) {
-            ticket.changeZustand("Nachzahlung");
-        } else {
-            ticket.changeZustand("bezahlt");
-        }
+    public static double round2Decimals(double input) {
+        return ((double) ((int) ((input * 100) + 0.5))) / 100;
     }
 
 }
