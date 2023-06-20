@@ -1,7 +1,7 @@
 package Servlets;
 
 import Classes.Parkhaus;
-import Classes.Ticket;
+import Classes.Tickets.Ticket;
 import Classes.TicketDatenbank;
 
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.Duration;
 
 @WebServlet(name = "verlassenServlet", value = "/verlassen-servlet")
 

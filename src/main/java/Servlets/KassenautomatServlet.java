@@ -1,7 +1,7 @@
 package Servlets;
 
 import Classes.*;
-import Exceptions.RaumZeitKontinuumException;
+import Classes.Tickets.Ticket;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

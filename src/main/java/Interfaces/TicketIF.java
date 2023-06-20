@@ -13,6 +13,8 @@ public interface TicketIF {
 
     public String bezahlen();
 
+    public String reinfahren();
+
     public String rausfahren();
 
     public String informationen();

@@ -1,5 +1,7 @@
-package Classes;
+package Classes.Tickets;
 
+import Classes.Parkhaus;
+import Classes.TicketDatenbank;
 import Classes.Ticketzustaende.Normalticket_Zustand;
 import Interfaces.TicketIF;
 import Interfaces.TicketZustandIF;
@@ -22,6 +24,11 @@ public class Ticket implements TicketIF {
     @Override
     public String bezahlen() {
         return ticketZustand.bezahlen();
+    }
+
+    @Override
+    public String reinfahren() {
+        return ticketZustand.reinfahren();
     }
 
     @Override

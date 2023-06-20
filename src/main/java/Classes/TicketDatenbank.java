@@ -1,5 +1,7 @@
 package Classes;
 
+import Classes.Tickets.Ersatzticket;
+import Classes.Tickets.Ticket;
 import Exceptions.RaumZeitKontinuumException;
 import Interfaces.TicketDatenbankIF;
 

@@ -1,5 +1,7 @@
 package Classes;
 
+import Classes.Tickets.Ticket;
+
 import java.time.LocalDateTime;
 
 public class Statistik {

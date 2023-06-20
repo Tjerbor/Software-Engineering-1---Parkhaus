@@ -1,6 +1,6 @@
 package Classes.Ticketzustaende;
 
-import Classes.Ticket;
+import Classes.Tickets.Ticket;
 import Interfaces.TicketZustandIF;
 
 public abstract class TicketZustand implements TicketZustandIF {
@@ -19,6 +19,11 @@ public abstract class TicketZustand implements TicketZustandIF {
 
     @Override
     public String bezahlen() {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public String reinfahren() {
         throw new IllegalStateException();
     }
 

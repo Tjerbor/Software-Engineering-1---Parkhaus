@@ -1,7 +1,7 @@
 package Classes.Ticketzustaende;
 
 import Classes.Preis;
-import Classes.Ticket;
+import Classes.Tickets.Ticket;
 
 import static Classes.Kassenautomat.round2Decimals;
 

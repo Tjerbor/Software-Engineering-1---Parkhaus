@@ -1,4 +1,4 @@
-package Classes;
+package Classes.Tickets;
 
 import Classes.Ticketzustaende.Ersatzticket_Zustand;
 

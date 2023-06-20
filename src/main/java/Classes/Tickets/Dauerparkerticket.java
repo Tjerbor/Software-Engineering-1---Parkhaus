@@ -1,7 +1,4 @@
-package Classes;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
+package Classes.Tickets;
 
 public class Dauerparkerticket extends Ticket {
 //    private static final int PARKDAUER_MONATE = 1;

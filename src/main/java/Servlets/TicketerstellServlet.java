@@ -1,8 +1,9 @@
 package Servlets;
 
 import Classes.*;
+import Classes.Tickets.Ersatzticket;
+import Classes.Tickets.Ticket;
 
-import javax.naming.directory.BasicAttribute;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

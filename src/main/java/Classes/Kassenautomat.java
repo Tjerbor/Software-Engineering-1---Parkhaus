@@ -1,5 +1,7 @@
 package Classes;
 
+import Classes.Tickets.Ticket;
+
 public class Kassenautomat {
 
 

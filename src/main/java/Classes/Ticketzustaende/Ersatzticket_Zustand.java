@@ -1,9 +1,8 @@
 package Classes.Ticketzustaende;
 
-import Classes.Autozaehler;
 import Classes.Parkhaus;
 import Classes.Preis;
-import Classes.Ticket;
+import Classes.Tickets.Ticket;
 
 import java.util.UUID;
 

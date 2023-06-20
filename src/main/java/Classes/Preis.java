@@ -1,8 +1,6 @@
 package Classes;
 
-import Exceptions.RaumZeitKontinuumException;
-
-import java.time.LocalDateTime;
+import Classes.Tickets.Ticket;
 
 public class Preis {
     private static double Stundenpreis = 2.3;

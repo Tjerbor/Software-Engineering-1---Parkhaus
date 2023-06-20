@@ -2,7 +2,7 @@ package Classes.Ticketzustaende;
 
 import Classes.Autozaehler;
 import Classes.Parkhaus;
-import Classes.Ticket;
+import Classes.Tickets.Ticket;
 
 import java.time.Duration;
 

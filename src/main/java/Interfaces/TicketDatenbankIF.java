@@ -1,6 +1,6 @@
 package Interfaces;
 
-import Classes.Ticket;
+import Classes.Tickets.Ticket;
 
 public interface TicketDatenbankIF {
     void addticket(Ticket ticket);

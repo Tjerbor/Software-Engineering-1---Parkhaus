@@ -1,7 +1,8 @@
 package Classes;
 
+import Classes.Tickets.Ticket;
+
 import java.time.Duration;
-import java.time.LocalDateTime;
 
 public class Rausfahren {
 

@@ -1,8 +1,6 @@
 package Servlets;
 
-import Classes.Parkhaus;
 import Classes.Statistik;
-import Classes.Ticket;
 import Classes.TicketDatenbank;
 
 import javax.servlet.ServletException;
