@@ -11,8 +11,8 @@ public class Behoerdenticket_Zustand extends TicketZustand {
     public Behoerdenticket_Zustand(Ticket parent) {
         super(parent);
         zustand = "Behoerdenticket";
-        parent.setID("110" + UUID.randomUUID().toString());
-        parent.setErstellDatum(Parkhaus.getTicketDatenbank().getParkhausTime());
+        parent.setID("110|" + UUID.randomUUID().toString());
+        parent.setErstellDatum(Parkhaus.getParkhausTime());
     }
 
     @Override
@@ -22,13 +22,13 @@ public class Behoerdenticket_Zustand extends TicketZustand {
 
     @Override
     public String reinfahren() {
-        Autozaehler.erhoeheAnzahl();
+        Parkhaus.getReingefahrenTicketDatenbank().addticket(parent);
         return "<h4>Erfolgreich reingefahren.</h4>";
     }
 
     @Override
     public String rausfahren() {
-        Autozaehler.erhoeheAnzahl();
+        Parkhaus.getReingefahrenTicketDatenbank().removeTicket(parent.getID());
         return "<h4>Erfolgreich rausgefahren.</h4>";
     }
 

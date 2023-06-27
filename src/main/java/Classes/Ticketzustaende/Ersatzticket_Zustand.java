@@ -14,7 +14,7 @@ public class Ersatzticket_Zustand extends TicketZustand{
         super(parent);
         zustand = "Ersatzticket";
         parent.setID(UUID.randomUUID().toString());
-        parent.setErstellDatum(Parkhaus.getTicketDatenbank().getParkhausTime().minusDays(1));
+        parent.setErstellDatum(Parkhaus.getParkhausTime().minusDays(1));
     }
 
     @Override
@@ -31,6 +31,11 @@ public class Ersatzticket_Zustand extends TicketZustand{
                 "<form action=\"kassenautomat\" method=\"post\">\n" +
                 "    <input type=\"submit\" name=\"bezahlen\" value=\"Bezahlen\" />\n" +
                 "</form>\n";
+    }
+
+    @Override
+    public String reinfahren() {
+        return "<p>Sie können nicht erneut mit dem selben Ticket reinfahren.</p>";
     }
 
     @Override

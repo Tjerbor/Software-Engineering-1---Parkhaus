@@ -18,9 +18,9 @@ public class VerlassenServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<h1>verlassenServlet</h1>");
+        out.println("<h1>Hallo lieber Kunde, bitte geben Sie ihr Ticket an.</h1>");
         out.println("<form action=\"verlassen-servlet\" method=\"post\">\n" +
-                "    <label for=\"TicketID\">TicketID \n" +
+                "    <label for=\"TicketID\">TicketID: \n" +
                 "    <input type=\"text\" id=\"TicketID\" name=\"TicketID\"><br><br>\n" +
                 "    <input type=\"submit\" value=\"Submit\">\n" +
                 "</form>");
@@ -31,7 +31,7 @@ public class VerlassenServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String Id = request.getParameter("TicketID");
 
-        TicketDatenbank db = Parkhaus.getTicketDatenbank();
+        TicketDatenbank db = Parkhaus.getKompletteTicketDatenbank();
         Ticket ticket = null;
         if (Id != null && db.containsTicket(Id)) {
             ticket = db.getTicket(Id);
@@ -43,9 +43,9 @@ public class VerlassenServlet extends HttpServlet {
         out.println("<h1>verlassenServlet</h1>");
 
         if (ticket != null) {
-            response.setContentType("text/html");
-
-            out.println(ticket.rausfahren());
+            String outt = ticket.rausfahren();
+            System.out.println(outt);
+            out.println(outt);
 
         } else {
             out.println("<h1>Ticket jibbit nicht.</h1>");

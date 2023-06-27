@@ -16,14 +16,14 @@ class ParkhausTest {
 
     @Test
     void testGetTicketDatenbank() {
-        TicketDatenbank ticketDatenbank = parkhaus.getTicketDatenbank();
+        TicketDatenbank ticketDatenbank = parkhaus.getKompletteTicketDatenbank();
         assertNotNull(ticketDatenbank);
     }
 
     @Test
     void testSetTicketDatenbank() {
         TicketDatenbank ticketDatenbank = new TicketDatenbank();
-        parkhaus.setTicketDatenbank(ticketDatenbank);
-        assertEquals(ticketDatenbank, parkhaus.getTicketDatenbank());
+        parkhaus.setKompletteTicketDatenbank(ticketDatenbank);
+        assertEquals(ticketDatenbank, parkhaus.getKompletteTicketDatenbank());
     }
 }

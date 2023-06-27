@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 public class Statistik {
     public static double berechneEinnahmen(LocalDateTime start, LocalDateTime end) {
         double einnahmen = 0.0;
-        TicketDatenbank datenbank = Parkhaus.getTicketDatenbank();
+        TicketDatenbank datenbank = Parkhaus.getKompletteTicketDatenbank();
 
-        for (Ticket ticket : TicketDatenbank.getAllTickets() ) {
+        for (Ticket ticket : Parkhaus.getUmsatzTicketDatenbank().getAllTickets() ) {
             LocalDateTime bezahlDatum = ticket.getBezahlDatum();
             if (bezahlDatum != null && bezahlDatum.isAfter(start) && bezahlDatum.isBefore(end)) {
                 if (ticket.getZustand().equals("bezahlt")) {

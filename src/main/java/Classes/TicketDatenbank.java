@@ -1,23 +1,16 @@
 package Classes;
 
-import Classes.Tickets.Ersatzticket;
 import Classes.Tickets.Ticket;
 import Exceptions.RaumZeitKontinuumException;
 import Interfaces.TicketDatenbankIF;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class TicketDatenbank implements TicketDatenbankIF {
-
-
-    public static int time_offset = 0;
-
-
-    private static List<Ticket> ticketDatenbank;
+    private List<Ticket> ticketDatenbank;
 
     public TicketDatenbank(List<Ticket> ticketdatenbank) {
         this.ticketDatenbank = ticketdatenbank;
@@ -30,11 +23,6 @@ public class TicketDatenbank implements TicketDatenbankIF {
     @Override
     public void addticket(Ticket ticket) {
         ticketDatenbank.add(ticket);
-    }
-
-    @Override
-    public void addErsatzTicket() {
-        ticketDatenbank.add(new Ersatzticket());
     }
 
     public Ticket getTicket(String ticketID) throws NoSuchElementException {
@@ -65,7 +53,6 @@ public class TicketDatenbank implements TicketDatenbankIF {
                 .stream()
                 .filter(t -> {
                     if (t.getID().equals(ticketID)) {
-                        Autozaehler.verringereAnzahl();
                         removed[0] = t;
                         return false;
                     } else {
@@ -80,7 +67,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
         return removed[0];
     }
 
-    public static int getTicketanzahl() {
+    public int getTicketanzahl() {
         return ticketDatenbank.size();
     }
 
@@ -95,20 +82,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
                 .collect(Collectors.toList());
     }
 
-    private static LocalDateTime addTime(LocalDateTime original, int delta) {
-        LocalDateTime result = original;
-        return result.plusMinutes(delta);
-    }
-
-    public static void addTime_offset(int delta) {
-        time_offset = time_offset + delta;
-    }
-
-    public static LocalDateTime getParkhausTime() {
-        return addTime(LocalDateTime.now(), time_offset);
-    }
-
-    public static List<Ticket> getAllTickets() {
+    public List<Ticket> getAllTickets() {
         return new ArrayList<>(ticketDatenbank);
     }
 

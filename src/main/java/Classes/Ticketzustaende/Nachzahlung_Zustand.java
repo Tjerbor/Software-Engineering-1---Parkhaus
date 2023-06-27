@@ -29,6 +29,11 @@ public class Nachzahlung_Zustand extends TicketZustand {
     }
 
     @Override
+    public String reinfahren() {
+        return "<p>Sie können nicht erneut mit dem selben Ticket reinfahren.</p>";
+    }
+
+    @Override
     public String rausfahren() {
         return "<p>Es ist länger 15 Minuten her, dass Sie ihr Ticket bezahlt haben. Nun wird eine nachzahlung gefordert.</p>";
     }

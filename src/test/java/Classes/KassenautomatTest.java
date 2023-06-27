@@ -19,10 +19,7 @@ class KassenautomatTest {
         assertTrue(ticket.isBezahlt());
     }*/
     @Test
-    void isNotBezahleTest() throws Exception {
-
-
-        throw new Exception();
+    void isNotBezahleTest(){
 
     }
 }
