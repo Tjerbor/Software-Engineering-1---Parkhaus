@@ -26,5 +26,7 @@
 </body>
 <br/>
 <a href="statistik">Statistik</a>
+<br/>
+<a href="ResetServlet">Statistik</a>
 
 </html>

@@ -10,4 +10,7 @@ public class Parkhaus {
     public static void setTicketDatenbank(TicketDatenbank ticketDatenbank) {
         Parkhaus.ticketDatenbank = ticketDatenbank;
     }
+    public static void removeAllTickets() {
+        ticketDatenbank = new TicketDatenbank();
+    }
 }
