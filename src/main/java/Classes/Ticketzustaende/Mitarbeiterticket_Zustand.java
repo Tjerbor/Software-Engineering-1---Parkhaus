@@ -23,8 +23,12 @@ public class Mitarbeiterticket_Zustand extends TicketZustand {
         if (Parkhaus.getReingefahrenTicketDatenbank().containsTicket(parent.getID())) {
             return "<p>Sie befinden sich bereits im Parkaus.</p>";
         } else {
-            Parkhaus.getReingefahrenTicketDatenbank().addticket(parent);
-            return "<h4>Erfolgreich reingefahren.</h4>";
+            if(Parkhaus.getOffizielFreieParkplaetze() == 0){
+                return "<h4>Dass Parkhaus ist voll.</h4>";
+            } else{
+                Parkhaus.getReingefahrenTicketDatenbank().addticket(parent);
+                return "<h4>Erfolgreich reingefahren.</h4>";
+            }
         }
     }
 
