@@ -68,6 +68,9 @@ public class Parkhaus {
     public static int getDauerparkerAnzahl() {
         return dauerparkerAnzahl;
     }
+    public static void setDauerparkerAnzahl(int a) {
+        dauerparkerAnzahl=a  ;
+    }
 
     public static void erhoeheDauerparkerAnzahl() {
         dauerparkerAnzahl++;
@@ -95,4 +98,5 @@ public class Parkhaus {
     public static void removeAllTickets() {
         kompletteTicketDatenbank = new TicketDatenbank();
     }
+
 }

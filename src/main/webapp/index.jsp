@@ -29,6 +29,6 @@
 <br/>
 <a href="statistik">Statistik</a>
 <br/>
-<a href="ResetServlet">Statistik</a>
+<a href="Reset">Reset</a>
 
 </html>

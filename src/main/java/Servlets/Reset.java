@@ -1,5 +1,6 @@
 package Servlets;
 
+import Classes.Autozaehler;
 import Classes.Parkhaus;
 import Classes.Preis;
 import Classes.TicketDatenbank;
@@ -22,29 +23,38 @@ public class Reset extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
 
-        out.println("<h1>Parkhaus reset </h1>");
-        out.println("<form action=\"/Reset\" method=\"post\">\n" +
-
+        out.println("<form action=\"Reset\" method=\"post\">\n" +
                 "    <input type=\"submit\" value=\"Reset\">\n" +
                 "</form>");
 
-
         out.println("</body></html>");
+
+
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServletContext servCon = getServletContext();
+
 
             Parkhaus.removeAllTickets() ;
             Parkhaus.addTime_offset(-Parkhaus.time_offset);
         Preis.setStundenpreis(Preis.standart_stundenpreis);
         Preis.setTagespreis (Preis.standart_Tagespreis);
+        Autozaehler.verringereAnzahl( Autozaehler.getAutoanzahl());
+        Parkhaus.setDauerparkerAnzahl(0);
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+
+        out.println("<html>");
+        out.println("<body>");
+        out.println("<h1>Das Parkhaus wurde erfolgreich zurückgesetzt.</h1>");
+
+        out.println("</body></html>");
     }
 
-    public void destroy() {
 
-    }
+
 }
