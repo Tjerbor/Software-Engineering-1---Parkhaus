@@ -31,7 +31,7 @@ public class VerlassenServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String Id = request.getParameter("TicketID");
 
-        TicketDatenbank db = Parkhaus.getTicketDatenbank();
+        TicketDatenbank db = Parkhaus.getKompletteTicketDatenbank();
         Ticket ticket = null;
         if (Id != null && db.containsTicket(Id)) {
             ticket = db.getTicket(Id);

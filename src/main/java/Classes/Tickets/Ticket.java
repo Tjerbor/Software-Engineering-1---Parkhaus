@@ -13,16 +13,15 @@ public class Ticket implements TicketIF {
     protected TicketZustandIF ticketZustand;
     protected String ID;
     protected double ueberwiesen = 0.0;
-    protected LocalDateTime erstellDatum = TicketDatenbank.getParkhausTime();
+    protected LocalDateTime erstellDatum = Parkhaus.getParkhausTime();
     protected LocalDateTime bezahlDatum;
-
-    public Ticket() {
-    }
 
     public void init(){
         if (Parkhaus.getOffizielFreieParkplaetze() < 1) {
             throw new IllegalStateException("Parkhaus ist voll.");
         }
+        Parkhaus.getKompletteTicketDatenbank().addticket(this);
+        Parkhaus.getReingefahrenTicketDatenbank().addticket(this);
         this.ticketZustand = new Normalticket_Zustand(this);
     }
 
@@ -58,7 +57,7 @@ public class Ticket implements TicketIF {
      */
     @Override
     public double berechneParkdauer() {
-        LocalDateTime delta = Parkhaus.getTicketDatenbank().getParkhausTime();
+        LocalDateTime delta = Parkhaus.getParkhausTime();
         double stunden = (double) Duration.between(this.erstellDatum, delta).getSeconds();
         stunden /= 3600; //60*60 = 3600
         return stunden;

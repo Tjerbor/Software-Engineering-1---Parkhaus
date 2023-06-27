@@ -43,7 +43,7 @@ public class KassenautomatServlet extends HttpServlet {
             servCon.setAttribute("ticketID", id);
         }
 
-        TicketDatenbank datenbank = Parkhaus.getTicketDatenbank();
+        TicketDatenbank datenbank = Parkhaus.getKompletteTicketDatenbank();
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

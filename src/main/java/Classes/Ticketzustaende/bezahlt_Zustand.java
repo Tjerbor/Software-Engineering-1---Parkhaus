@@ -12,12 +12,12 @@ public class bezahlt_Zustand extends TicketZustand {
     public bezahlt_Zustand(Ticket parent) {
         super(parent);
         zustand = "bezahlt";
-        parent.setBezahlDatum(Parkhaus.getTicketDatenbank().getParkhausTime());
+        parent.setBezahlDatum(Parkhaus.getParkhausTime());
     }
 
     @Override
     public String KassenautomatenText() {
-        if (Duration.between(parent.getBezahlDatum(), Parkhaus.getTicketDatenbank().getParkhausTime()).toMinutes() > 15L) {
+        if (Duration.between(parent.getBezahlDatum(), Parkhaus.getParkhausTime()).toMinutes() > 15L) {
             parent.setTicketZustand(new Nachzahlung_Zustand(parent));
             return parent.kassenautomatenText();
         } else {
@@ -26,9 +26,17 @@ public class bezahlt_Zustand extends TicketZustand {
     }
 
     @Override
+    public String bezahlen() {
+        return "<p>Sie können nicht erneut mit dem selben Ticket reinfahren.</p>";
+    }
+
+    @Override
     public String rausfahren() {
-        if (Duration.between(parent.getBezahlDatum(), Parkhaus.getTicketDatenbank().getParkhausTime()).toMinutes() < 15L) {
-            Parkhaus.getTicketDatenbank().removeTicket(parent.getID());
+        if (Duration.between(parent.getBezahlDatum(), Parkhaus.getParkhausTime()).toMinutes() < 15L) {
+            Parkhaus.getKompletteTicketDatenbank().removeTicket(parent.getID());
+            Parkhaus.getUmsatzTicketDatenbank().addticket(
+                    Parkhaus.getReingefahrenTicketDatenbank().removeTicket(parent.getID())
+            );
             Autozaehler.verringereAnzahl();
             return "<p>Sie haben das Parkhaus verlassen.</p><p>Ihr Ticket wurde gelöscht.</p>";
         } else {

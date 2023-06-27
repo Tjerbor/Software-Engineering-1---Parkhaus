@@ -13,7 +13,7 @@ public class Rausfahren {
             return true;
         } else if (ticket.getID().startsWith("DP") && ticket.getBezahlDatum() != null) {
             return true;
-        } else if (Duration.between(ticket.getBezahlDatum(), TicketDatenbank.getParkhausTime()).toMinutes() < 15) {
+        } else if (Duration.between(ticket.getBezahlDatum(), Parkhaus.getParkhausTime()).toMinutes() < 15) {
             return true;
         } else {
             return false;

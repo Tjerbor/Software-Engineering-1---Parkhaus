@@ -1,6 +1,6 @@
 package Servlets;
 
-import Classes.*;
+import Classes.Parkhaus;
 import Exceptions.RaumZeitKontinuumException;
 
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import static Classes.TicketDatenbank.addTime_offset;
-import static Classes.TicketDatenbank.time_offset;
+import static Classes.Parkhaus.addTime_offset;
+import static Classes.Parkhaus.getParkhausTime;
 
 @WebServlet(name = "ZeitServlet", value = "/Zeit-servlet")
 public class ZeitServlet extends HttpServlet {
@@ -34,7 +33,7 @@ public class ZeitServlet extends HttpServlet {
                 "</form>");
 
 
-        LocalDateTime parkhausTime = TicketDatenbank.getParkhausTime();
+        LocalDateTime parkhausTime = getParkhausTime();
         String Datum = parkhausTime.toString();
         out.println("<p>Aktuelle Parkhauszeit: " + Datum.substring(0, 10) + " " + Datum.substring(11, 16) + " Uhr.</p>");
         out.println("</body></html>");
@@ -55,8 +54,8 @@ public class ZeitServlet extends HttpServlet {
             addTime_offset(60);
         }
         if (buttonValue.equals("Reset")) {
-            if (Parkhaus.getTicketDatenbank().getTicketanzahl() == 0) {
-                time_offset = 0;
+            if (Parkhaus.getKompletteTicketDatenbank().getTicketanzahl() == 0) {
+                Parkhaus.time_offset = 0;
             } else {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, new RaumZeitKontinuumException().getMessage());
             }

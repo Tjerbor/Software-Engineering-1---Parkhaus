@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "ticketerstellServlet", value = "/ticketerstell-servlet")
 public class TicketerstellServlet extends HttpServlet {
-    TicketDatenbank ticketdatenbank = Parkhaus.getTicketDatenbank();
+    TicketDatenbank ticketdatenbank = Parkhaus.getKompletteTicketDatenbank();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
@@ -21,9 +21,17 @@ public class TicketerstellServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + "Ein Ticket ziehen" + "</h1>");
-        out.println("<form action=\"ticket-servlet\" method=\"post\">\n" +
-                "    <label for=\"id\">Neues Ticket  :</label>" +
-                "    <input type=\"submit\" value=\"Ziehen\">\n" +
+        out.println("<form action=\"ticket-servlet?normal-ticket\" method=\"post\">\n" +
+                "    <input type=\"submit\" value=\"Neues Ticket Ziehen\">\n" +
+                "</form>");
+        out.println("<form action=\"ticket-servlet?behoerden-ticket\" method=\"post\">\n" +
+                "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Behördenticket erstellen\" />\n"+
+                "</form>");
+        out.println("<form action=\"ticket-servlet?dauerparker-ticket\" method=\"post\">\n" +
+                "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Dauerparkerticket erstellen\" />\n"+
+                "</form>");
+        out.println("<form action=\"ticket-servlet?mitarbeiter-ticket\" method=\"post\">\n" +
+                "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Mitarbeiterticket erstellen\" />\n"+
                 "</form>");
         //TicketDatenbank ticketdatenbank = Parkhaus.getTicketDatenbank();
 
@@ -44,9 +52,11 @@ public class TicketerstellServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head><title>Admin Console</title></head>");
             out.println("<body>");
-            out.println("<h1>Admin Console</h1>");
-            out.println("<p>You are logged in as admin.</p>");
-            out.println("<a href=\"ticket-servlet?ersatz-ticket\">Erstelle Ersatzticket<a>");
+            out.println("<h1>Admin Konsole</h1>");
+            out.println("<p>Du bist als Admin eingelogtt.</p>");
+            out.println("<form action=\"ticket-servlet?ersatz-ticket\" method=\"post\">\n" +
+                    "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Ersatzticket erstellen\" />\n"+
+                    "</form>");
             out.println("</body></html>");
 
         } else {
