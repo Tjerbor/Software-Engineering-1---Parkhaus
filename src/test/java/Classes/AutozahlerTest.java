@@ -12,6 +12,7 @@ class AutozahlerTest {
     @BeforeEach
     void setUp() {
         autozaehler = new Autozaehler();
+        autozaehler.veraendereAnzahl(-autozaehler.getAutoanzahl());
     }
 
     @Test
@@ -27,7 +28,7 @@ class AutozahlerTest {
 
     @Test
     void testVeraendereAnzahlWithNegativeDelta() {
-        assertThrows(IllegalArgumentException.class, () -> autozaehler.veraendereAnzahl(-5));
+        assertThrows(IllegalArgumentException.class, () -> autozaehler.veraendereAnzahl(-50));
     }
 
     @Test
