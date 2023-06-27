@@ -17,6 +17,7 @@ public class TicketServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getQueryString() != null && request.getQueryString().equals("ersatz-ticket")) {
             Ticket ticket = new Ersatzticket();
+            ticket.init();
             Parkhaus.getTicketDatenbank().addticket(ticket);
             response.setContentType("text/html");
 
@@ -26,12 +27,16 @@ public class TicketServlet extends HttpServlet {
 
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        Ticket ticket = new Ticket();
-        Parkhaus.getTicketDatenbank().addticket(ticket);
-
         response.setContentType("text/html");
-        response.getWriter().write(ticket.informationen());
+        try {
+            Ticket ticket = new Ticket();
+            ticket.init();
+            Parkhaus.getTicketDatenbank().addticket(ticket);
+            response.getWriter().write(ticket.informationen());
+        } catch (Exception e) {
+            response.getWriter().write("<h1>" + e.getMessage() + "</h1>");
+        }
+
 
     }
 }

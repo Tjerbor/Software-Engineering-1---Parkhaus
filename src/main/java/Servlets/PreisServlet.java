@@ -22,13 +22,13 @@ public class PreisServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<h1>Preisservlet</h1>");
 
-        out.println("<p>The price per hour = " + Preis.getStundenpreis());
-        out.println("<p>The price per day = " + Preis.getTagespreis());
+        out.println("<p>Preis pro Stunde: " + Preis.getStundenpreis() + " Euro</p>");
+        out.println("<p>Preis pro Tag: " + Preis.getTagespreis() + " Euro</p>");
 
         out.println("<form action=\"preis-servlet\" method=\"post\">\n" +
-                "    <label for=\"stundenPreis\">change Stundenpreis:</label>\n" +
+                "    <label for=\"stundenPreis\">Verändere Stundenpreis:</label>\n" +
                 "    <input type=\"text\" id=\"stundenpreis\" name=\"stundenpreis\"><br><br>\n" +
-                "    <label for=\"tagespreis\">change Tagespreis:</label>\n" +
+                "    <label for=\"tagespreis\">Verändere Tagespreis:</label>\n" +
                 "    <input type=\"text\" id=\"tagespreis\" name=\"tagespreis\"><br><br>\n" +
                 "    <input type=\"submit\" value=\"Submit\">\n" +
 
@@ -61,12 +61,12 @@ public class PreisServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<h1>Preisservlet</h1>");
 
-        out.println("<p>The price per hour = " + Preis.getStundenpreis());
-        out.println("<p>The price per day = " + Preis.getTagespreis());
+        out.println("<p>Preis pro Stunde: " + Preis.getStundenpreis() + " Euro</p>");
+        out.println("<p>Preis pro Tag: " + Preis.getTagespreis() + " Euro</p>");
         out.println("<form action=\"preis-servlet\" method=\"post\">\n" +
-                "    <label for=\"stundenPreis\">change Stundenpreis:</label>\n" +
+                "    <label for=\"stundenPreis\">Verändere Stundenpreis:</label>\n" +
                 "    <input type=\"text\" id=\"stundenpreis\" name=\"stundenpreis\"><br><br>\n" +
-                "    <label for=\"tagespreis\">change Tagespreis:</label>\n" +
+                "    <label for=\"tagespreis\">Verändere Tagespreis:</label>\n" +
                 "    <input type=\"text\" id=\"tagespreis\" name=\"tagespreis\"><br><br>\n" +
                 "    <input type=\"submit\" value=\"Submit\">\n" +
 

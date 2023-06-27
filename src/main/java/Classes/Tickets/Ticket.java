@@ -8,7 +8,6 @@ import Interfaces.TicketZustandIF;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Ticket implements TicketIF {
     protected TicketZustandIF ticketZustand;
@@ -18,6 +17,12 @@ public class Ticket implements TicketIF {
     protected LocalDateTime bezahlDatum;
 
     public Ticket() {
+    }
+
+    public void init(){
+        if (Parkhaus.getOffizielFreieParkplaetze() < 1) {
+            throw new IllegalStateException("Parkhaus ist voll.");
+        }
         this.ticketZustand = new Normalticket_Zustand(this);
     }
 

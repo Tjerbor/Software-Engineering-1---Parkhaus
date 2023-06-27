@@ -15,9 +15,9 @@ public class TicketDatenbank implements TicketDatenbankIF {
 
 
     public static int time_offset = 0;
-
-
     private static List<Ticket> ticketDatenbank;
+
+    private int dauerparkerAnzahl = 0;
 
     public TicketDatenbank(List<Ticket> ticketdatenbank) {
         this.ticketDatenbank = ticketdatenbank;
@@ -112,4 +112,15 @@ public class TicketDatenbank implements TicketDatenbankIF {
         return new ArrayList<>(ticketDatenbank);
     }
 
+    public int getDauerparkerAnzahl() {
+        return dauerparkerAnzahl;
+    }
+
+    public void erhoeheDauerparkerAnzahl(){
+        dauerparkerAnzahl++;
+    }
+
+    public void verringereDauerparkerAnzahl(){
+        dauerparkerAnzahl++;
+    }
 }

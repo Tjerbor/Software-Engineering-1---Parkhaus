@@ -29,14 +29,14 @@ public class ZeitServlet extends HttpServlet {
                 "    <input type=\"submit\" name=\"button\" value=\"+1 Stunde\">\n" +
                 "</form>");
         out.println("<form action=\"Zeit-servlet\" method=\"post\">\n" +
-                "    <label for=\"Reset\">Parkhaus zurücksetzen \n" +
+                "    <label for=\"Reset\">Parkhauszeit zurücksetzen: \n" +
                 "    <input type=\"submit\" name=\"button\"value=\"Reset\">\n" +
                 "</form>");
 
 
         LocalDateTime parkhausTime = TicketDatenbank.getParkhausTime();
-        String formattedTime = parkhausTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
-        out.println("<p>Aktuelle Zeit im Parkhaus = " + formattedTime + "</p>");
+        String Datum = parkhausTime.toString();
+        out.println("<p>Aktuelle Parkhauszeit: " + Datum.substring(0, 10) + " " + Datum.substring(11, 16) + " Uhr.</p>");
         out.println("</body></html>");
 
     }

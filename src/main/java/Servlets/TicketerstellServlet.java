@@ -20,16 +20,18 @@ public class TicketerstellServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + "Create a ticket" + "</h1>");
+        out.println("<h1>" + "Ein Ticket ziehen" + "</h1>");
         out.println("<form action=\"ticket-servlet\" method=\"post\">\n" +
-                "    <label for=\"id\">New ticket  :</label>" +
-                "    <input type=\"submit\" value=\"Submit\">\n" +
+                "    <label for=\"id\">Neues Ticket  :</label>" +
+                "    <input type=\"submit\" value=\"Ziehen\">\n" +
                 "</form>");
         //TicketDatenbank ticketdatenbank = Parkhaus.getTicketDatenbank();
 
         // Preise werden ausgegeben
-        out.println("<p>The current number of cars = " + Autozaehler.getAutoanzahl());
-        out.println("<p>The price per hour = " + Preis.getStundenpreis() + "<p>The price per day = " + Preis.getTagespreis());
+        out.println("<p>Zurzeitige Anzahl von Autos: " + Autozaehler.getAutoanzahl() + "</p>");
+        out.println("<p>Frei verfügbare Parkplätze: " + Parkhaus.getOffizielFreieParkplaetze() + "</p>");
+        out.println("<p>Preis pro Stunde: " + Preis.getStundenpreis() + " Euro</p>");
+        out.println("<p>Preis pro Tag: " + Preis.getTagespreis() + " Euro</p>");
 
         //Parameter für Benutzernamen und Passwort abrufen
         String username = request.getParameter("username");

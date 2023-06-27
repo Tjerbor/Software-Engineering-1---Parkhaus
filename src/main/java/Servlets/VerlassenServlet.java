@@ -18,9 +18,9 @@ public class VerlassenServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<h1>verlassenServlet</h1>");
+        out.println("<h1>Hallo lieber Kunde, bitte geben Sie ihr Ticket an.</h1>");
         out.println("<form action=\"verlassen-servlet\" method=\"post\">\n" +
-                "    <label for=\"TicketID\">TicketID \n" +
+                "    <label for=\"TicketID\">TicketID: \n" +
                 "    <input type=\"text\" id=\"TicketID\" name=\"TicketID\"><br><br>\n" +
                 "    <input type=\"submit\" value=\"Submit\">\n" +
                 "</form>");

@@ -1,6 +1,8 @@
 package Exceptions;
 
-public class RaumZeitKontinuumException extends Exception {
+import java.rmi.ServerException;
+
+public class RaumZeitKontinuumException extends ServerException {
 
     public RaumZeitKontinuumException() {
         super("Raum-Zeit-Kontinuum verletzt.");
