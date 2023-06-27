@@ -17,7 +17,12 @@ public class bezahlt_Zustand extends TicketZustand {
 
     @Override
     public String KassenautomatenText() {
-        return "<p>Das Ticket wurde bereits bezahlt.</p>";
+        if (Duration.between(parent.getBezahlDatum(), Parkhaus.getTicketDatenbank().getParkhausTime()).toMinutes() > 15L) {
+            parent.setTicketZustand(new Nachzahlung_Zustand(parent));
+            return parent.kassenautomatenText();
+        } else {
+            return "<p>Das Ticket wurde bereits bezahlt.</p>";
+        }
     }
 
     @Override
