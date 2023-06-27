@@ -25,12 +25,12 @@ public class Dauerparker_Zustand extends TicketZustand {
         if (Parkhaus.getReingefahrenTicketDatenbank().containsTicket(parent.getID())) {
             return "<p>Sie befinden sich bereits im Parkaus.</p>";
         } else {
-            if (Duration.between(parent.getBezahlDatum(), Parkhaus.getParkhausTime()).toDays() > Parkhaus.getGueltigKeitsLaengeDauerparker()) {
+            if (Duration.between(parent.getErstellDatum(), Parkhaus.getParkhausTime()).toDays() > Parkhaus.getGueltigKeitsLaengeDauerparker()) {
                 Parkhaus.getKompletteTicketDatenbank().removeTicket(parent.getID());
-                return "<h1>Ihr Ticket ist abgelaufen.</h1>";
+                return "<p>Ihr Ticket ist abgelaufen.</p>";
             } else {
                 Parkhaus.getReingefahrenTicketDatenbank().addticket(parent);
-                return "<h4>Erfolgreich reingefahren.</h4>";
+                return "<p>Erfolgreich reingefahren.</p>";
             }
         }
     }
@@ -39,9 +39,9 @@ public class Dauerparker_Zustand extends TicketZustand {
     public String rausfahren() {
         if (Parkhaus.getReingefahrenTicketDatenbank().containsTicket(parent.getID())) {
             Parkhaus.getReingefahrenTicketDatenbank().removeTicket(parent.getID());
-            return "<h4>Erfolgreich rausgefahren.</h4>";
+            return "<p>Erfolgreich rausgefahren.</p>";
         } else {
-            return "<h4>Sie können nicht rausfahren solange Sie vorher nicht reingefahren sind.</h4>";
+            return "<p>Sie können nicht rausfahren solange Sie vorher nicht reingefahren sind.</p>";
         }
     }
 

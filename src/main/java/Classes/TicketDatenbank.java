@@ -1,11 +1,9 @@
 package Classes;
 
-import Classes.Tickets.Ersatzticket;
 import Classes.Tickets.Ticket;
 import Exceptions.RaumZeitKontinuumException;
 import Interfaces.TicketDatenbankIF;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -55,7 +53,6 @@ public class TicketDatenbank implements TicketDatenbankIF {
                 .stream()
                 .filter(t -> {
                     if (t.getID().equals(ticketID)) {
-                        Autozaehler.verringereAnzahl();
                         removed[0] = t;
                         return false;
                     } else {

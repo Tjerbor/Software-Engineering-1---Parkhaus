@@ -9,7 +9,7 @@ public class Statistik {
         double einnahmen = 0.0;
         TicketDatenbank datenbank = Parkhaus.getKompletteTicketDatenbank();
 
-        for (Ticket ticket : Parkhaus.getKompletteTicketDatenbank().getAllTickets() ) {
+        for (Ticket ticket : Parkhaus.getUmsatzTicketDatenbank().getAllTickets() ) {
             LocalDateTime bezahlDatum = ticket.getBezahlDatum();
             if (bezahlDatum != null && bezahlDatum.isAfter(start) && bezahlDatum.isBefore(end)) {
                 if (ticket.getZustand().equals("bezahlt")) {

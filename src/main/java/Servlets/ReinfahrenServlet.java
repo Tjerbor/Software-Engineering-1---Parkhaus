@@ -48,9 +48,8 @@ public class ReinfahrenServlet extends HttpServlet {
         out.println("<h1>Reinfahrenservlet</h1>");
 
         if (ticket != null) {
-            resp.setContentType("text/html");
-
-            out.println(ticket.reinfahren());
+            String outt = ticket.reinfahren();
+            out.println(outt);
 
         } else {
             out.println("<h1>Ticket jibbit nicht.</h1>");

@@ -29,7 +29,8 @@ public class TicketServlet extends HttpServlet {
                 ticket = new Mitarbeiterticket();
             }
             ticket.init();
-            response.getWriter().write(ticket.informationen());
+            String outt = ticket.informationen();
+            response.getWriter().write(outt);
         } catch (Exception e) {
             response.getWriter().write("<h1>" + e.getMessage() + "</h1>");
         }

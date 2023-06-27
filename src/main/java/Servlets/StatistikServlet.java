@@ -41,7 +41,7 @@ public class StatistikServlet extends HttpServlet {
         LocalDateTime start = LocalDateTime.parse(startString.replace("T", " "));
         LocalDateTime end = LocalDateTime.parse(endString.replace("T", " "));
 
-        int auslastung = Parkhaus.getKompletteTicketDatenbank().getTicketanzahl();
+        int auslastung = Parkhaus.getUmsatzTicketDatenbank().getTicketanzahl();
         double einnahmen;
         einnahmen = Statistik.berechneEinnahmen(start, end);
 

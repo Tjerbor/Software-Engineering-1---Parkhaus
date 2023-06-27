@@ -54,11 +54,13 @@ public class KassenautomatServlet extends HttpServlet {
         if (ticketID != null && datenbank.containsTicket(ticketID)) {
             Ticket ticket = datenbank.getTicket(ticketID);
 
-            if(action == null){
-                out.println(ticket.kassenautomatenText());
+            if (action == null) {
+                String outt = ticket.kassenautomatenText();
+                out.println(outt);
             } else {
                 servCon.setAttribute("ticketID", null);
-                out.println(ticket.bezahlen());
+                String outt = ticket.bezahlen();
+                out.println(outt);
             }
 
         } else {

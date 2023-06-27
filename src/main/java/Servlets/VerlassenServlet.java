@@ -43,9 +43,9 @@ public class VerlassenServlet extends HttpServlet {
         out.println("<h1>verlassenServlet</h1>");
 
         if (ticket != null) {
-            response.setContentType("text/html");
-
-            out.println(ticket.rausfahren());
+            String outt = ticket.rausfahren();
+            System.out.println(outt);
+            out.println(outt);
 
         } else {
             out.println("<h1>Ticket jibbit nicht.</h1>");
