@@ -93,6 +93,6 @@ public class Parkhaus {
         Parkhaus.gueltigKeitsLaengeDauerparker = gueltigKeitsLaengeDauerparker;
     }
     public static void removeAllTickets() {
-        ticketDatenbank = new TicketDatenbank();
+        kompletteTicketDatenbank = new TicketDatenbank();
     }
 }

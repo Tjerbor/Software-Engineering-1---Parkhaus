@@ -1,6 +1,7 @@
 package Servlets;
 
 import Classes.Parkhaus;
+import Classes.Preis;
 import Classes.TicketDatenbank;
 import Classes.Tickets.Ticket;
 
@@ -38,7 +39,9 @@ public class Reset extends HttpServlet {
         ServletContext servCon = getServletContext();
 
             Parkhaus.removeAllTickets() ;
-            TicketDatenbank.addTime_offset(-TicketDatenbank.time_offset);
+            Parkhaus.addTime_offset(-Parkhaus.time_offset);
+        Preis.setStundenpreis(Preis.standart_stundenpreis);
+        Preis.setTagespreis (Preis.standart_Tagespreis);
     }
 
     public void destroy() {

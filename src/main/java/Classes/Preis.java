@@ -3,6 +3,8 @@ package Classes;
 import Classes.Tickets.Ticket;
 
 public class Preis {
+     public static double standart_stundenpreis =2.3;
+     public static double standart_Tagespreis =27.0;
     private static double Stundenpreis = 2.3;
     private static double Tagespreis = 27.0;
 
