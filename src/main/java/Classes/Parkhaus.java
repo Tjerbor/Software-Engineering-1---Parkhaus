@@ -19,7 +19,7 @@ public class Parkhaus {
     private static TicketDatenbank umsatzTicketDatenbank = new TicketDatenbank();
 
     public static int time_offset = 0;
-    private static int Parkplaetze = 5;
+    private static int Parkplaetze = 50;
     private static int dauerparkerAnzahl = 0;
 
     private static Long gueltigKeitsLaengeDauerparker = 30L;
