@@ -31,6 +31,11 @@ public class bezahlt_Zustand extends TicketZustand {
     }
 
     @Override
+    public String reinfahren() {
+        return "<p>Sie können nicht erneut mit dem selben Ticket reinfahren.</p>";
+    }
+
+    @Override
     public String rausfahren() {
         if (Duration.between(parent.getBezahlDatum(), Parkhaus.getParkhausTime()).toMinutes() < 15L) {
             Parkhaus.getKompletteTicketDatenbank().removeTicket(parent.getID());
