@@ -26,6 +26,6 @@ public class Autozaehler {
     }
 
     public static void verringereAnzahl(int a) {
-        Autoanzahl=Autoanzahl-a;
+        Autoanzahl = Autoanzahl - a;
     }
 }

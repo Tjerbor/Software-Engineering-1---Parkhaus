@@ -1,5 +1,6 @@
 package Classes.Ticketzustaende;
 
+import Classes.Autozaehler;
 import Classes.Parkhaus;
 import Classes.Tickets.Ticket;
 
@@ -27,6 +28,7 @@ public class Mitarbeiterticket_Zustand extends TicketZustand {
                 return "<h4>Dass Parkhaus ist voll.</h4>";
             } else{
                 Parkhaus.getReingefahrenTicketDatenbank().addticket(parent);
+                Autozaehler.erhoeheAnzahl();
                 return "<h4>Erfolgreich reingefahren.</h4>";
             }
         }
@@ -36,6 +38,7 @@ public class Mitarbeiterticket_Zustand extends TicketZustand {
     public String rausfahren() {
         if (Parkhaus.getReingefahrenTicketDatenbank().containsTicket(parent.getID())) {
             Parkhaus.getReingefahrenTicketDatenbank().removeTicket(parent.getID());
+            Autozaehler.verringereAnzahl();
             return "<h4>Erfolgreich rausgefahren.</h4>";
         } else {
             return "<h4>Sie können nicht rausfahren solange Sie vorher nicht reingefahren sind.</h4>";

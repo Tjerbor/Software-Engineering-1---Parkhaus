@@ -31,18 +31,16 @@ public class Reset extends HttpServlet {
         out.println("</body></html>");
 
 
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-            Parkhaus.removeAllTickets() ;
-            Parkhaus.addTime_offset(-Parkhaus.time_offset);
+        Parkhaus.removeAllTickets();
+        Parkhaus.addTime_offset(-Parkhaus.time_offset);
         Preis.setStundenpreis(Preis.standart_stundenpreis);
-        Preis.setTagespreis (Preis.standart_Tagespreis);
-        Autozaehler.verringereAnzahl( Autozaehler.getAutoanzahl());
+        Preis.setTagespreis(Preis.standart_Tagespreis);
+        Autozaehler.verringereAnzahl(Autozaehler.getAutoanzahl());
         Parkhaus.setDauerparkerAnzahl(0);
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -54,7 +52,6 @@ public class Reset extends HttpServlet {
 
         out.println("</body></html>");
     }
-
 
 
 }

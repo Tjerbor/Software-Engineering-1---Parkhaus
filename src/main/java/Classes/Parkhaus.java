@@ -68,8 +68,9 @@ public class Parkhaus {
     public static int getDauerparkerAnzahl() {
         return dauerparkerAnzahl;
     }
+
     public static void setDauerparkerAnzahl(int a) {
-        dauerparkerAnzahl=a  ;
+        dauerparkerAnzahl = a;
     }
 
     public static void erhoeheDauerparkerAnzahl() {
@@ -95,8 +96,11 @@ public class Parkhaus {
     public static void setGueltigKeitsLaengeDauerparker(Long gueltigKeitsLaengeDauerparker) {
         Parkhaus.gueltigKeitsLaengeDauerparker = gueltigKeitsLaengeDauerparker;
     }
+
     public static void removeAllTickets() {
         kompletteTicketDatenbank = new TicketDatenbank();
+        reingefahrenTicketDatenbank = new TicketDatenbank();
+        umsatzTicketDatenbank = new TicketDatenbank();
     }
 
 }
