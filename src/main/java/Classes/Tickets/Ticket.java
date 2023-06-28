@@ -109,7 +109,7 @@ public class Ticket implements TicketIF {
     @Override
     public String toString() {
         return "Ticket{" +
-                "ticketZustand=" + ticketZustand +
+                "ticketZustand=" + ticketZustand.getZustand() +
                 ", ID='" + ID + '\'' +
                 ", ueberwiesen=" + ueberwiesen +
                 ", erstellDatum=" + erstellDatum +

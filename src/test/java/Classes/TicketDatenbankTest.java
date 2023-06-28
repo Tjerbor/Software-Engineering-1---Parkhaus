@@ -13,6 +13,7 @@ public class TicketDatenbankTest {
     public void testAddTicket() {
         TicketDatenbank ticketDatenbank = new TicketDatenbank();
         Ticket ticket = new Ticket();
+        ticket.init();
         ticketDatenbank.addticket(ticket);
         assertTrue(ticketDatenbank.containsTicket(ticket.getID()));
     }
@@ -21,6 +22,7 @@ public class TicketDatenbankTest {
     public void testGetTicket() {
         TicketDatenbank ticketDatenbank = new TicketDatenbank();
         Ticket ticket = new Ticket();
+        ticket.init();
         ticketDatenbank.addticket(ticket);
         assertEquals(ticket, ticketDatenbank.getTicket(ticket.getID()));
     }
@@ -29,6 +31,7 @@ public class TicketDatenbankTest {
     public void testRemoveTicket() {
         TicketDatenbank ticketDatenbank = new TicketDatenbank();
         Ticket ticket = new Ticket();
+        ticket.init();
         ticketDatenbank.addticket(ticket);
         ticketDatenbank.removeTicket(ticket.getID());
         assertFalse(ticketDatenbank.containsTicket(ticket.getID()));

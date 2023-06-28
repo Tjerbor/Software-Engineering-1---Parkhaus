@@ -60,8 +60,7 @@ public class RausfahrenTest {
         Rausfahren rausfahren = new Rausfahren();
         Ticket ticket = new Ticket();
         ticket.setID("XYZ123");
-        ticket.setErstellDatum(LocalDateTime.now().minusMinutes(20));
-        ticket.setBezahlDatum(LocalDateTime.now());
+        ticket.setBezahlDatum(Parkhaus.getParkhausTime().minusMinutes(20));
 
         // Act
         boolean result = rausfahren.darfraus(ticket);

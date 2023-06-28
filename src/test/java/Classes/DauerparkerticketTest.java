@@ -34,6 +34,7 @@ class DauerparkerticketTest {
 
     @Test
     void testGetTicketZustand() {
+        dauerparkerticket.init();
         assertNotNull(dauerparkerticket.getZustand());
     }
 

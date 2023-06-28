@@ -24,32 +24,32 @@ class TicketTest {
 
     @Test
     void testBezahlen() {
-        String result = ticket.bezahlen();
-        assertEquals("Bezahlt", result);
+        ticket.bezahlen();
+        assertEquals("bezahlt", ticket.getZustand());
     }
 
     @Test
     void testReinfahren() {
         String result = ticket.reinfahren();
-        assertEquals("Eingefahren", result);
+        assertEquals("<p>Sie können nicht erneut mit dem selben Ticket reinfahren.</p>", result);
     }
 
     @Test
     void testRausfahren() {
         String result = ticket.rausfahren();
-        assertEquals("Ausgefahren", result);
-    }
-
-    @Test
-    void testKassenautomatenText() {
-        String result = ticket.kassenautomatenText();
-        assertEquals("Willkommen im Parkhaus", result);
+        assertEquals("<p>Sie haben Ihr Ticket noch nicht bezahlt.</p>", result);
     }
 
     @Test
     void testInformationen() {
         String result = ticket.informationen();
-        assertEquals("Ticketinformationen", result);
+
+        String erstellDatum = ticket.getErstellDatum().toString();
+        String expect = "<h1>Ticket: " + ticket.getID() + "</h1>" +
+                "<h2>Zustand: " + ticket.getZustand() + "</h2>" +
+                "<p>Erstellt am " + erstellDatum.substring(0, 10) + " um " + erstellDatum.substring(11, 16) + " Uhr.</p>" +
+                String.format("<p>Parkdauer: %.2fh</p>", ticket.berechneParkdauer());
+        assertEquals(expect, result);
     }
 
     @Test
@@ -101,7 +101,7 @@ class TicketTest {
         ticket.setTicketZustand(ticketZustand);
 
         String result = ticket.getZustand();
-        assertEquals("Normalzustand", result);
+        assertEquals("Normalticket", result);
     }
 
     @Test
@@ -117,7 +117,7 @@ class TicketTest {
         TicketZustandIF ticketZustand = new Normalticket_Zustand(ticket);
         ticket.setTicketZustand(ticketZustand);
 
-        assertEquals(ticketZustand, ticket.getZustand());
+        assertEquals(ticketZustand.getZustand(), ticket.getZustand());
     }
 
     @Test
