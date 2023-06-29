@@ -33,7 +33,11 @@ public class Parkhaus {
     }
 
     public static void reset() {
-        kompletteTicketDatenbank = new TicketDatenbank();
+        removeAllTickets();
+        addTime_offset(-Parkhaus.time_offset);
+        Preis.setStundenpreis(Preis.standart_stundenpreis);
+        Preis.setTagespreis(Preis.standart_Tagespreis);
+        Autozaehler.verringereAnzahl(Autozaehler.getAutoanzahl());
     }
 
     public static int getParkplaetze() {

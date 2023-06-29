@@ -36,12 +36,7 @@ public class Reset extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Parkhaus.removeAllTickets();
-        Parkhaus.addTime_offset(-Parkhaus.time_offset);
-        Preis.setStundenpreis(Preis.standart_stundenpreis);
-        Preis.setTagespreis(Preis.standart_Tagespreis);
-        Autozaehler.verringereAnzahl(Autozaehler.getAutoanzahl());
-        Parkhaus.setDauerparkerAnzahl(0);
+        Parkhaus.reset();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
