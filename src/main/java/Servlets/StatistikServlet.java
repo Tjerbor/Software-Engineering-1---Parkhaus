@@ -1,5 +1,6 @@
 package Servlets;
 
+import Classes.Kassenautomat;
 import Classes.Parkhaus;
 import Classes.Statistik;
 import Classes.TicketDatenbank;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "statistikServlet", value = "/statistik")
 public class StatistikServlet extends HttpServlet {
@@ -37,9 +39,10 @@ public class StatistikServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String startString = request.getParameter("start");
         String endString = request.getParameter("end");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        LocalDateTime start = LocalDateTime.parse(startString.replace("T", " "));
-        LocalDateTime end = LocalDateTime.parse(endString.replace("T", " "));
+        LocalDateTime start = LocalDateTime.parse(startString.replace("T", " "),formatter);
+        LocalDateTime end = LocalDateTime.parse(endString.replace("T", " "),formatter);
 
         int auslastung = Parkhaus.getUmsatzTicketDatenbank().getTicketanzahl();
         double einnahmen;
@@ -53,7 +56,7 @@ public class StatistikServlet extends HttpServlet {
         out.println("<h3>Auslastung von " + startString + " bis " + endString + "</h3>");
         out.println("<p>Anzahl der belegten Parkplätze: " + auslastung + "</p>");
         out.println("<h3>Einnahmen von " + startString + " bis " + endString + "</h3>");
-        out.println("<p>Gesamteinnahmen: " + einnahmen + " Euro</p>");
+        out.println("<p>Gesamteinnahmen: " + Kassenautomat.round2Decimals(einnahmen) + " Euro</p>");
         out.println("</body></html>");
     }
 }
