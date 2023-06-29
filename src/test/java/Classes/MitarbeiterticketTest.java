@@ -13,6 +13,7 @@ public class MitarbeiterticketTest {
 
     @BeforeEach
     public void setUp() throws RaumZeitKontinuumException {
+        Parkhaus.reset();
         mitarbeiterticket = new Mitarbeiterticket();
         Parkhaus.getKompletteTicketDatenbank().bereinigeDatenbank(); // Ticketdatenbank zurücksetzen
     }
