@@ -3,6 +3,7 @@ package Classes;
 import java.time.LocalDateTime;
 
 public class Parkhaus {
+    private Parkhaus(){} //privater Konstruktor
     /**
      * ALle benutzbaren Tickets
      */
@@ -52,9 +53,6 @@ public class Parkhaus {
         return Parkplaetze - Autozaehler.getAutoanzahl();
     }
 
-    public static void setParkplaetze(int parkplaetze) {
-        Parkplaetze = parkplaetze;
-    }
 
     public static void addTime_offset(int delta) {
         time_offset = time_offset + delta;
@@ -73,15 +71,8 @@ public class Parkhaus {
         return dauerparkerAnzahl;
     }
 
-    public static void setDauerparkerAnzahl(int a) {
-        dauerparkerAnzahl = a;
-    }
 
     public static void erhoeheDauerparkerAnzahl() {
-        dauerparkerAnzahl++;
-    }
-
-    public static void verringereDauerparkerAnzahl() {
         dauerparkerAnzahl++;
     }
 
@@ -97,9 +88,6 @@ public class Parkhaus {
         return gueltigKeitsLaengeDauerparker;
     }
 
-    public static void setGueltigKeitsLaengeDauerparker(Long gueltigKeitsLaengeDauerparker) {
-        Parkhaus.gueltigKeitsLaengeDauerparker = gueltigKeitsLaengeDauerparker;
-    }
 
     public static void removeAllTickets() {
         kompletteTicketDatenbank = new TicketDatenbank();
