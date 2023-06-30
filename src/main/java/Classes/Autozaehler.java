@@ -6,6 +6,7 @@ public class Autozaehler {
     public static int getAutoanzahl() {
         return Autoanzahl;
     }
+    Autozaehler(){}
 
     public static void veraendereAnzahl(int delta) throws IllegalArgumentException {
         if (Autoanzahl + delta < 0) {
