@@ -6,6 +6,7 @@ import Classes.Preis;
 import Classes.TicketDatenbank;
 import Classes.Tickets.Ticket;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,9 +46,8 @@ public class Reset extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Parkhaus.reset();
-        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
         out.println("<html>");
@@ -61,6 +61,11 @@ public class Reset extends HttpServlet {
         out.println("<body>");
 
         out.println("<h1>Das Parkhaus wurde erfolgreich zurückgesetzt.</h1>");
+        out.println("<h1>Home</h1>");
+        // Forward the request to a JSP file
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/index.jsp");
+        dispatcher.forward(request, response);
+
 
         out.println("</body>");
         out.println("</html>");

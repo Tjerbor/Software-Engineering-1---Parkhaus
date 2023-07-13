@@ -77,6 +77,8 @@
     <a href="verlassen-servlet"><button class="purple-button button-medium">Rausfahren</button></a>
     <a href="statistik"><button class="purple-button button-medium">Parkhaus-Statistik</button></a>
     <a href="Reset"><button class="purple-button button-small">Reset Parkhaussystem</button></a>
+
+
 </div>
 
 <!-- Style Button -->
