@@ -62,10 +62,6 @@ public class Reset extends HttpServlet {
 
         out.println("<h1>Das Parkhaus wurde erfolgreich zurückgesetzt.</h1>");
         out.println("<h1>Home</h1>");
-        // Forward the request to a JSP file
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/webapp/index.jsp");
-        dispatcher.forward(request, response);
-
 
         out.println("</body>");
         out.println("</html>");
