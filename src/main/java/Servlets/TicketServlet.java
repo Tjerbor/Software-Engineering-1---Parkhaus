@@ -8,13 +8,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "ticketServlet", value = "/ticket-servlet")
-
 public class TicketServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Ticket Servlet</title>");
+        out.println("<style>");
+        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: #fff5d7; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+
         try {
             Ticket ticket = null;
             if (request.getQueryString() != null && request.getQueryString().equals("normal-ticket")) {
@@ -30,10 +42,12 @@ public class TicketServlet extends HttpServlet {
             }
             ticket.init();
             String outt = ticket.informationen();
-            response.getWriter().write(outt);
+            out.println(outt);
         } catch (Exception e) {
-            response.getWriter().write("<h1>" + e.getMessage() + "</h1>");
+            out.println("<h1>" + e.getMessage() + "</h1>");
         }
 
+        out.println("</body>");
+        out.println("</html>");
     }
 }
