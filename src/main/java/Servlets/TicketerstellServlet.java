@@ -19,8 +19,8 @@ public class TicketerstellServlet extends HttpServlet {
         response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + "Ein Ticket ziehen" + "</h1>");
+        out.println("<html><body style=\"background-color: #fff5d7; text-align: center; font-family: Arial, sans-serif;\">");
+        out.println("<h1 style=\"color: purple; font-size: 24px;\">Ein Ticket ziehen</h1>");
         out.println("<form action=\"ticket-servlet?normal-ticket\" method=\"post\">\n" +
                 "    <input type=\"submit\" value=\"Neues Ticket Ziehen\">\n" +
                 "</form>");
@@ -50,10 +50,10 @@ public class TicketerstellServlet extends HttpServlet {
             //Admin eingeloggt
             response.setContentType("text/html");
             out.println("<html>");
-            out.println("<head><title>Admin Console</title></head>");
+            out.println("<head><title style=\"color: purple;\">Admin Console</title></head>");
             out.println("<body>");
-            out.println("<h1>Admin Konsole</h1>");
-            out.println("<p>Du bist als Admin eingelogtt.</p>");
+            out.println("<h1 style=\"color: purple; font-size: 24px;\">Admin Konsole</h1>");
+            out.println("<p>Du bist als Admin eingeloggt.</p>");
             out.println("<form action=\"ticket-servlet?ersatz-ticket\" method=\"post\">\n" +
                     "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Ersatzticket erstellen\" />\n"+
                     "</form>");
@@ -66,7 +66,6 @@ public class TicketerstellServlet extends HttpServlet {
 
         out.println("</body></html>");
     }
-
 
     //post methode zur Erstellung eines Ersatztickets
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
