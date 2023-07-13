@@ -22,12 +22,12 @@ public class ZeitServlet extends HttpServlet {
 
         out.println("<h1 style=\"color: purple; text-align: center;\">Zeit Servlet</h1>");
 
-        out.println("<form action=\"Zeit-servlet\" method=\"post\">\n" +
+        out.println("<form action=\"Zeit-servlet\" method=\"post\"style=\"text-align: center;\">\n" +
                 "    <input type=\"submit\" name=\"button\" value=\"+5 Minuten\">\n" +
                 "    <input type=\"submit\" name=\"button\" value=\"+10 Minuten\">\n" +
                 "    <input type=\"submit\" name=\"button\" value=\"+1 Stunde\">\n" +
                 "</form>");
-        out.println("<form action=\"Zeit-servlet\" method=\"post\">\n" +
+        out.println("<form action=\"Zeit-servlet\" method=\"post\"style=\"text-align: center;\">\n" +
                 "    <label for=\"Reset\">Parkhauszeit zurücksetzen: \n" +
                 "    <input type=\"submit\" name=\"button\"value=\"Reset\">\n" +
                 "</form>");
@@ -35,7 +35,7 @@ public class ZeitServlet extends HttpServlet {
 
         LocalDateTime parkhausTime = getParkhausTime();
         String Datum = parkhausTime.toString();
-        out.println("<p>Aktuelle Parkhauszeit: " + Datum.substring(0, 10) + " " + Datum.substring(11, 16) + " Uhr.</p>");
+        out.println("<p style=\"text-align: center;\">Aktuelle Parkhauszeit: " + Datum.substring(0, 10) + " " + Datum.substring(11, 16) + " Uhr.</p>");
         out.println("</body></html>");
 
     }
