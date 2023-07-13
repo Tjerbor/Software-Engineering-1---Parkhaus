@@ -14,16 +14,30 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 @WebServlet(name = "statistikServlet", value = "/statistik")
 public class StatistikServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        out.println("<html><body>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Statistik des Parkhauses</title>");
+        out.println("<style>");
+        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: plum; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("form { display: flex; flex-direction: column; align-items: center; margin-top: 20px; }");
+        out.println("label { font-size: 18px; }");
+        out.println("input[type='datetime-local'] { margin-bottom: 10px; }");
+        out.println("input[type='submit'] { font-size: 16px; padding: 5px 10px; }");
+        out.println("h3 { color: purple; font-size: 20px; }");
+        out.println("p { font-size: 18px; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+
         out.println("<h1>Statistik des Parkhauses</h1>");
         out.println("<form action=\"statistik\" method=\"post\">");
         out.println("<label for=\"start\">Startzeitpunkt:</label>");
@@ -32,8 +46,12 @@ public class StatistikServlet extends HttpServlet {
         out.println("<input type=\"datetime-local\" id=\"end\" name=\"end\"><br><br>");
         out.println("<input type=\"submit\" value=\"Statistik anzeigen\">");
         out.println("</form>");
-        out.println("</body></html>");
+
+        out.println("</body>");
+        out.println("</html>");
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
