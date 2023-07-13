@@ -24,7 +24,7 @@ public class ZeitServlet extends HttpServlet {
         out.println("<head>");
         out.println("<title style=\"color: purple;\">Zeit Servlet</title>");
         out.println("<style>");
-        out.println("body { text-align: center; font-family: Arial, sans-serif; }");
+        out.println("body {background-color: #fff5d7; text-align: center; font-family: Arial, sans-serif; }");
         out.println("h1 { color: purple; font-size: 24px; }");
         out.println("form { display: flex; justify-content: center; margin-bottom: 10px; }");
         out.println("input[type='submit'] { margin: 5px; font-size: 16px; }");
