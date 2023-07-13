@@ -20,7 +20,7 @@ public class ZeitServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        out.println("<h1>Zeit Servlet</h1>");
+        out.println("<h1 style=\"color: purple; text-align: center;\">Zeit Servlet</h1>");
 
         out.println("<form action=\"Zeit-servlet\" method=\"post\">\n" +
                 "    <input type=\"submit\" name=\"button\" value=\"+5 Minuten\">\n" +
