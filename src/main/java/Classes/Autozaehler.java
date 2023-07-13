@@ -8,7 +8,7 @@ public class Autozaehler {
     }
     Autozaehler(){}
 
-    public static void veraendereAnzahl(int delta) throws IllegalArgumentException {
+    public static void veraendereAnzahl(int delta) {
         if (Autoanzahl + delta < 0) {
             throw new IllegalArgumentException("Die Autoanzahl kann nicht geringer als 0 sein.");
         }
@@ -19,7 +19,7 @@ public class Autozaehler {
         Autoanzahl++;
     }
 
-    public static void verringereAnzahl() throws IllegalStateException {
+    public static void verringereAnzahl() {
         if (Autoanzahl == 0) {
             throw new IllegalStateException("Anzahl beträgt bereits 0 und kann nicht weiter verringert werden.");
         }
