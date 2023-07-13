@@ -54,7 +54,25 @@ public class ZeitServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Code for doPost method remains the same
+        String buttonValue = request.getParameter("button"); // Get the clicked button value
+
+        // Adjust delta based on the clicked button value
+        if (buttonValue.equals("+5 Minuten")) {
+            addTime_offset(5);
+        } else if (buttonValue.equals("+10 Minuten")) {
+            addTime_offset(10);
+        } else if (buttonValue.equals("+1 Stunde")) {
+            addTime_offset(60);
+        } else if (buttonValue.equals("Reset")) {
+            if (Parkhaus.getKompletteTicketDatenbank().getTicketanzahl() == 0) {
+                Parkhaus.time_offset = 0;
+            } else {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, new RaumZeitKontinuumException().getMessage());
+            }
+        }
+
+        // Redirect back to the doGet method to display the updated time
+        response.sendRedirect("Zeit-servlet");
     }
 
 
