@@ -54,13 +54,13 @@ public class StatistikServlet extends HttpServlet {
 
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String startString = request.getParameter("start");
         String endString = request.getParameter("end");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        LocalDateTime start = LocalDateTime.parse(startString.replace("T", " "),formatter);
-        LocalDateTime end = LocalDateTime.parse(endString.replace("T", " "),formatter);
+        LocalDateTime start = LocalDateTime.parse(startString.replace("T", " "), formatter);
+        LocalDateTime end = LocalDateTime.parse(endString.replace("T", " "), formatter);
 
         int auslastung = Parkhaus.getUmsatzTicketDatenbank().getTicketanzahl();
         double einnahmen;
@@ -69,12 +69,26 @@ public class StatistikServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        out.println("<html><body>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Statistik des Parkhauses</title>");
+        out.println("<style>");
+        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: plum; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("h3 { color: purple; font-size: 18px; }");
+        out.println("p { font-size: 16px; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+
         out.println("<h1>Statistik des Parkhauses</h1>");
         out.println("<h3>Auslastung von " + startString + " bis " + endString + "</h3>");
         out.println("<p>Anzahl der belegten Parkplätze: " + auslastung + "</p>");
         out.println("<h3>Einnahmen von " + startString + " bis " + endString + "</h3>");
         out.println("<p>Gesamteinnahmen: " + Kassenautomat.round2Decimals(einnahmen) + " Euro</p>");
-        out.println("</body></html>");
+
+        out.println("</body>");
+        out.println("</html>");
+
     }
 }
