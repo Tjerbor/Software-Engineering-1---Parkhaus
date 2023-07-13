@@ -21,7 +21,7 @@ import java.io.PrintWriter;
             out.println("<head>");
             out.println("<title style=\"color: purple;\">Verlassen Servlet</title>");
             out.println("<style>");
-            out.println("body { background-color: plum; text-align: center; font-family: Arial, sans-serif; }");
+            out.println("body { background-color: #fff5d7; text-align: center; font-family: Arial, sans-serif; }");
             out.println("h1 { color: purple; font-size: 24px; }");
             out.println("form { display: flex; flex-direction: column; align-items: center; margin-top: 20px; }");
             out.println("input[type='text'] { margin-bottom: 10px; font-size: 16px; }");
