@@ -61,7 +61,7 @@ public class Reset extends HttpServlet {
         out.println("<body>");
 
         out.println("<h1>Das Parkhaus wurde erfolgreich zurückgesetzt.</h1>");
-        out.println("<h1><a href=\"C:\\Users\\Bertrand Alougou\\IdeaProjects\\inf_se1_ss23_Team_6_sose23\\src\\main\\webapp\">Home</a>/h1>");
+        out.println("<h1><a href=\"http://localhost:8080/Team_6_sose23_war_exploded/\"><button class=\"button-medium\">Home</button></a></h1>");
 
         out.println("</body>");
         out.println("</html>");
