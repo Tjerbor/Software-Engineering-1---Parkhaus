@@ -17,10 +17,22 @@ public class TicketerstellServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + "Ein Ticket ziehen" + "</h1>");
+
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Ein Ticket ziehen</title>");
+        out.println("<style>");
+        out.println("body { background-color: #fff5d7; text-align: center; font-family: Arial, sans-serif; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("form { display: inline-block; margin: 10px; }");
+        out.println("input[type='submit'] { font-size: 16px; padding: 10px 20px; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+
+        out.println("<h1>Ein Ticket ziehen</h1>");
+
         out.println("<form action=\"ticket-servlet?normal-ticket\" method=\"post\">\n" +
                 "    <input type=\"submit\" value=\"Neues Ticket Ziehen\">\n" +
                 "</form>");
@@ -33,40 +45,11 @@ public class TicketerstellServlet extends HttpServlet {
         out.println("<form action=\"ticket-servlet?mitarbeiter-ticket\" method=\"post\">\n" +
                 "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Mitarbeiterticket erstellen\" />\n"+
                 "</form>");
-        //TicketDatenbank ticketdatenbank = Parkhaus.getTicketDatenbank();
 
-        // Preise werden ausgegeben
-        out.println("<p>Zurzeitige Anzahl von Autos: " + Autozaehler.getAutoanzahl() + "</p>");
-        out.println("<p>Frei verfügbare Parkplätze: " + Parkhaus.getOffizielFreieParkplaetze() + "</p>");
-        out.println("<p>Preis pro Stunde: " + Preis.getStundenpreis() + " Euro</p>");
-        out.println("<p>Preis pro Tag: " + Preis.getTagespreis() + " Euro</p>");
+        out.println("</body>");
+        out.println("</html>");
 
-        //Parameter für Benutzernamen und Passwort abrufen
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        //Überprüfung, ob Benutzername und Passwort korrekt sind
-        if (username.equals("admin") && password.equals("admin7")) {
-            //Admin eingeloggt
-            response.setContentType("text/html");
-            out.println("<html>");
-            out.println("<head><title>Admin Console</title></head>");
-            out.println("<body>");
-            out.println("<h1>Admin Konsole</h1>");
-            out.println("<p>Du bist als Admin eingelogtt.</p>");
-            out.println("<form action=\"ticket-servlet?ersatz-ticket\" method=\"post\">\n" +
-                    "    <input type=\"submit\" name=\"ersatz-ticket\" value=\"Ersatzticket erstellen\" />\n"+
-                    "</form>");
-            out.println("</body></html>");
-
-        } else {
-            //Falsche Zugangsdaten
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "ungültige username oder passwort");
-        }
-
-        out.println("</body></html>");
     }
-
 
     //post methode zur Erstellung eines Ersatztickets
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
