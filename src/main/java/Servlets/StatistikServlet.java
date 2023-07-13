@@ -73,7 +73,7 @@ public class StatistikServlet extends HttpServlet {
         out.println("<head>");
         out.println("<title style=\"color: purple;\">Statistik des Parkhauses</title>");
         out.println("<style>");
-        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: plum; }");
+        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: #fff5d7; }");
         out.println("h1 { color: purple; font-size: 24px; }");
         out.println("h3 { color: purple; font-size: 18px; }");
         out.println("p { font-size: 16px; }");
