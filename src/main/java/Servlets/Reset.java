@@ -19,34 +19,51 @@ import java.io.PrintWriter;
 public class Reset extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Reset Servlet</title>");
+        out.println("<style>");
+        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: #fff5d7; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("form { display: flex; justify-content: center; margin-top: 20px; }");
+        out.println("input[type='submit'] { font-size: 16px; padding: 10px 20px; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
 
         out.println("<form action=\"Reset\" method=\"post\">\n" +
                 "    <input type=\"submit\" value=\"Reset\">\n" +
                 "</form>");
 
-        out.println("</body></html>");
-
-
+        out.println("</body>");
+        out.println("</html>");
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Parkhaus.reset();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-
         out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Reset Servlet</title>");
+        out.println("<style>");
+        out.println("body { text-align: center; font-family: Arial, sans-serif; background-color: #fff5d7; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("</style>");
+        out.println("</head>");
         out.println("<body>");
+
         out.println("<h1>Das Parkhaus wurde erfolgreich zurückgesetzt.</h1>");
 
-        out.println("</body></html>");
+        out.println("</body>");
+        out.println("</html>");
     }
-
 
 }
