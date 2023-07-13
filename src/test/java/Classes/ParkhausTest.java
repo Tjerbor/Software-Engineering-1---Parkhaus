@@ -7,11 +7,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ParkhausTest {
 
-    private Parkhaus parkhaus;
+    private Parkhaus parkhaus = new Parkhaus();
 
     @BeforeEach
     void setUp() {
-        parkhaus = new Parkhaus();
     }
 
     @Test
