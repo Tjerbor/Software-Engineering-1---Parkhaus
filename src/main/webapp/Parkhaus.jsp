@@ -72,6 +72,7 @@
     <a href="preis-servlet"><button class="purple-button button-medium">Ticket Preise</button></a>
     <a href="ticketerstell-servlet"><button class="purple-button button-large">Ticket Ziehen</button></a>
     <a href="ticketerstell-servlet?password=admin7&username=admin"><button class="purple-button button-large">Ticket erstellen Adminpanel</button></a>
+    <a href="kassenautomat"><button class="purple-button button-medium">Zum Kassenautomat</button></a>
     <a href="reinfahren-servlet"><button class="purple-button button-medium">Reinfahren</button></a>
     <a href="Zeit-servlet"><button class="purple-button button-medium">Parkdauer ändern</button></a>
     <a href="verlassen-servlet"><button class="purple-button button-medium">Rausfahren</button></a>
