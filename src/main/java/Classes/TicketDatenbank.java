@@ -10,10 +10,10 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class TicketDatenbank implements TicketDatenbankIF {
-    private List<Ticket> ticketDatenbank;
+    private List<Ticket> tiketDatenbank;
 
     public TicketDatenbank(List<Ticket> ticketdatenbank) {
-        this.ticketDatenbank = ticketdatenbank;
+        this.tiketDatenbank = ticketdatenbank;
     }
 
     public TicketDatenbank() {
@@ -22,11 +22,11 @@ public class TicketDatenbank implements TicketDatenbankIF {
 
     @Override
     public void addticket(Ticket ticket) {
-        ticketDatenbank.add(ticket);
+        tiketDatenbank.add(ticket);
     }
 
     public Ticket getTicket(String ticketID) throws NoSuchElementException {
-        Ticket result = ticketDatenbank
+        Ticket result = tiketDatenbank
                 .stream()
                 .filter(p -> p.getID().equals(ticketID))
                 .findFirst()
@@ -39,7 +39,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
     }
 
     public boolean containsTicket(String ticketID) {
-        Ticket result = ticketDatenbank
+        Ticket result = tiketDatenbank
                 .stream()
                 .filter(p -> p.getID().equals(ticketID))
                 .findFirst()
@@ -49,7 +49,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
 
     public Ticket removeTicket(String ticketID) throws NoSuchElementException {
         Ticket[] removed = new Ticket[1];
-        ticketDatenbank = ticketDatenbank
+        tiketDatenbank = tiketDatenbank
                 .stream()
                 .filter(t -> {
                     if (t.getID().equals(ticketID)) {
@@ -68,7 +68,7 @@ public class TicketDatenbank implements TicketDatenbankIF {
     }
 
     public int getTicketanzahl() {
-        return ticketDatenbank.size();
+        return tiketDatenbank.size();
     }
 
     /**
@@ -76,14 +76,14 @@ public class TicketDatenbank implements TicketDatenbankIF {
      */
 
     public void bereinigeDatenbank() throws RaumZeitKontinuumException {
-        ticketDatenbank = ticketDatenbank
+        tiketDatenbank = tiketDatenbank
                 .stream()
                 .filter(p -> p.berechneParkdauer() < 4392) //6 Monate sind 4392 Stunden
                 .collect(Collectors.toList());
     }
 
     public List<Ticket> getAllTickets() {
-        return new ArrayList<>(ticketDatenbank);
+        return new ArrayList<>(tiketDatenbank);
     }
 
 }

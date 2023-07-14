@@ -3,7 +3,7 @@ package Classes;
 import java.time.LocalDateTime;
 
 public class Parkhaus {
-    Parkhaus(){} //privater Konstruktor
+    private Parkhaus(){} //privater Konstruktor
     /**
      * ALle benutzbaren Tickets
      */
