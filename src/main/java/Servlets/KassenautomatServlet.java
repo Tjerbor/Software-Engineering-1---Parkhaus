@@ -20,8 +20,19 @@ public class KassenautomatServlet extends HttpServlet {
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title style=\"color: purple;\">Zum Kassenautomaten</title>");
+        out.println("<style>");
+        out.println("body { background-color: #fff5d7; text-align: center; font-family: Arial, sans-serif; }");
+        out.println("h1 { color: purple; font-size: 24px; }");
+        out.println("form { display: flex; flex-direction: column; align-items: center; }");
+        out.println("label { font-size: 18px; }");
+        out.println("input[type='text'] { margin-bottom: 10px; padding: 5px; font-size: 16px; }");
+        out.println("input[type='submit'] { padding: 5px 15px; font-size: 16px; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
         out.println("<h1>Hallo lieber Kunde, bitte geben Sie ihr Ticket an.</h1>");
         out.println("<form action=\"kassenautomat\" method=\"post\">\n" +
                 "    <label for=\"ticketID\">Ticket ID:</label>\n" +
