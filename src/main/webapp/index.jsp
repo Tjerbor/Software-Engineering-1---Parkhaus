@@ -41,7 +41,7 @@
     Willkommen in unserem Parkhaus !
 </h1>
 <div class="button-container">
-    <a href="http://localhost:8080/Team_6_sose23_war_exploded/Parkhaus.jsp">Parkhaus besuchen</a>
+    <a href="http://sepp-test.inf.h-brs.de:8080/Team_6_sose23-1.0-SNAPSHOT/Parkhaus.jsp">Parkhaus besuchen</a>
 </div>
 </body>
 </html>
