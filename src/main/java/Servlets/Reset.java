@@ -1,13 +1,8 @@
 package Servlets;
 
-import Classes.Autozaehler;
-import Classes.Parkhaus;
-import Classes.Preis;
-import Classes.TicketDatenbank;
-import Classes.Tickets.Ticket;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+import Classes.Parkhaus;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +41,7 @@ public class Reset extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Parkhaus.reset();
         PrintWriter out = response.getWriter();
 
