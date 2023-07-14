@@ -1,7 +1,7 @@
 package Classes.Tickets;
 
 import Classes.Parkhaus;
-import Classes.TicketDatenbank;
+
 import Classes.Ticketzustaende.Normalticket_Zustand;
 import Interfaces.TicketIF;
 import Interfaces.TicketZustandIF;
@@ -16,7 +16,8 @@ public class Ticket implements TicketIF {
     protected LocalDateTime erstellDatum = Parkhaus.getParkhausTime();
     protected LocalDateTime bezahlDatum;
 
-    public void init(){
+
+    public void init() {
         if (Parkhaus.getOffizielFreieParkplaetze() < 1) {
             throw new IllegalStateException("Parkhaus ist voll.");
         }

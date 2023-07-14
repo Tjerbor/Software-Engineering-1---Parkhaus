@@ -28,9 +28,9 @@ public class TicketServlet extends HttpServlet {
         out.println("<body>");
 
         try {
-            Ticket ticket = null;
+            Ticket ticket = new Ticket();
             if (request.getQueryString() != null && request.getQueryString().equals("normal-ticket")) {
-                ticket = new Ticket();
+                 ticket = new Ticket();
             } else if (request.getQueryString() != null && request.getQueryString().equals("ersatz-ticket")) {
                 ticket = new Ersatzticket();
             } else if (request.getQueryString() != null && request.getQueryString().equals("behoerden-ticket")) {
